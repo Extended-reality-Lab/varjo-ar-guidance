@@ -511,7 +511,8 @@ void AppLogic::update()
                 // Update frame data
                 m_scene->updateColorFrame(static_cast<int>(ch), glm::ivec2(w, h), varjo_TextureFormat_R8G8B8A8_UNORM, rowStride, bufferRGBA.data());
 
-                Mat BGRImage; //= cv::imread(streamFrame.metadata.distortedColor, IMREAD_COLOR);
+                // grab buffer data and convert to appropriate form for streaming via CVLab
+                Mat BGRImage;
                 
                 Mat rgba_mat = cv::Mat(h, w, CV_8UC4, bufferRGBA.data());
                 cv::cvtColor(rgba_mat, BGRImage, COLOR_RGBA2BGR);
@@ -519,7 +520,7 @@ void AppLogic::update()
 
 
                 cv::imshow("outputted image" + std::to_string(ch), BGRImage);
-                cv::waitKey(1); //0 as debug. Set higher later
+                cv::waitKey(1);
             } else {
                 const auto w = colorFrame.metadata.bufferMetadata.width;
                 const auto h = colorFrame.metadata.bufferMetadata.height;
@@ -532,7 +533,8 @@ void AppLogic::update()
                 // Update frame data
                 m_scene->updateColorFrame(static_cast<int>(ch), glm::ivec2(w, h), varjo_TextureFormat_R8G8B8A8_UNORM, rowStride, bufferRGBA.data());
 
-                Mat BGRImage; //= cv::imread(streamFrame.metadata.distortedColor, IMREAD_COLOR);
+                // grab buffer data and convert to appropriate form for streaming via CVLab. Blur image
+                Mat BGRImage;
                 Mat blurred_image;
                 Mat rgba_mat = cv::Mat(h, w, CV_8UC4, bufferRGBA.data());
 
@@ -540,7 +542,7 @@ void AppLogic::update()
                 cv::GaussianBlur(BGRImage, blurred_image, Size(15, 15), 0);
 
                 cv::imshow("blurred outputted image" + std::to_string(ch), blurred_image);
-                cv::waitKey(1); //0 as debug. Set higher later
+                cv::waitKey(1);
             }
         }
     }
