@@ -1,0 +1,21 @@
+# ninja log v6
+4	62	7531364517057097	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-mkdir	eac85865ddd3466
+4	62	7531364517057097	C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-mkdir	eac85865ddd3466
+62	4355	7531364559985570	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-download	aa8ed4923f118587
+62	4355	7531364559985570	C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-download	aa8ed4923f118587
+4356	4521	7531364560045604	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-update	cc51fd0791b133f8
+4356	4521	7531364560045604	C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-update	cc51fd0791b133f8
+4521	4578	7531364562217397	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-patch	35e94b3815271113
+4521	4578	7531364562217397	C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-patch	35e94b3815271113
+4578	4693	7531364563355080	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-configure	cd960ffbbc339a7c
+4578	4693	7531364563355080	C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-configure	cd960ffbbc339a7c
+4694	4781	7531364564238332	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-build	edb5240e8c643aa7
+4694	4781	7531364564238332	C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-build	edb5240e8c643aa7
+4781	4845	7531364564884804	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-install	8fc1f299f617a524
+4781	4845	7531364564884804	C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-install	8fc1f299f617a524
+4845	4903	7531364565466298	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-test	d82472c7d13bc884
+4845	4903	7531364565466298	C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-test	d82472c7d13bc884
+4904	5000	7531364566434466	CMakeFiles/catch2-populate-complete	382a007b7c37cb85
+4904	5000	7531364566434466	catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-done	382a007b7c37cb85
+4904	5000	7531364566434466	C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/_deps/catch2-subbuild/CMakeFiles/catch2-populate-complete	382a007b7c37cb85
+4904	5000	7531364566434466	C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/_deps/catch2-subbuild/catch2-populate-prefix/src/catch2-populate-stamp/catch2-populate-done	382a007b7c37cb85

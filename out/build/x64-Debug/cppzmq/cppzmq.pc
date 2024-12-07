@@ -1,0 +1,9 @@
+prefix="C:/Users/Students/Downloads/HelloZmq/out/install/x64-Debug"
+includedir="C:/Users/Students/Downloads/HelloZmq/out/install/x64-Debug/include"
+
+Name: cppzmq
+Description: C++ binding for libzmq
+URL: https://github.com/zeromq/cppzmq
+Version: 4.10.0
+Requires: libzmq
+Cflags: -I"${includedir}" 

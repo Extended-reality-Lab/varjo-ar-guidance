@@ -1,0 +1,923 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.22631 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: C:/Program Files/Microsoft Visual Studio/2022/Preview/VC/Tools/MSVC/14.42.34321/bin/Hostx64/x64/cl.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34321.1 for x64
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+      
+      CMakeCCompilerId.c
+      Microsoft (R) Incremental Linker Version 14.42.34321.1
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+      
+      /out:CMakeCCompilerId.exe 
+      CMakeCCompilerId.obj 
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.exe"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
+      
+      The C compiler identification is MSVC, found in:
+        C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/3.29.5-msvc4/CompilerIdC/CMakeCCompilerId.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:1216 (message)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:250 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Detecting C compiler /showIncludes prefix:
+        main.c
+        Note: including file: C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\ShowIncludes\\foo.h
+        
+      Found prefix "Note: including file: "
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: C:/Program Files/Microsoft Visual Studio/2022/Preview/VC/Tools/MSVC/14.42.34321/bin/Hostx64/x64/cl.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      Microsoft (R) C/C++ Optimizing Compiler Version 19.42.34321.1 for x64
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+      
+      CMakeCXXCompilerId.cpp
+      Microsoft (R) Incremental Linker Version 14.42.34321.1
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+      
+      /out:CMakeCXXCompilerId.exe 
+      CMakeCXXCompilerId.obj 
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/3.29.5-msvc4/CompilerIdCXX/CMakeCXXCompilerId.exe
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:1216 (message)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake:250 (CMAKE_DETERMINE_MSVC_SHOWINCLUDES_PREFIX)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Detecting CXX compiler /showIncludes prefix:
+        main.c
+        Note: including file: C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\ShowIncludes\\foo.h
+        
+      Found prefix "Note: including file: "
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:67 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-isbxwj"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-isbxwj"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_C_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-isbxwj'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_cc816
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_cc816.dir\\CMakeCCompilerABI.c.obj /FdCMakeFiles\\cmTC_cc816.dir\\ /FS -c "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-3.29\\Modules\\CMakeCCompilerABI.c"
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_cc816.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_cc816.dir\\CMakeCCompilerABI.c.obj  /out:cmTC_cc816.exe /implib:cmTC_cc816.lib /pdb:cmTC_cc816.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:173 (message)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'C': C:/PROGRA~1/MIB055~1/2022/Preview/VC/Tools/MSVC/1442~1.343/bin/Hostx64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:210 (cmake_determine_linker_id)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the C compiler's linker: "C:/PROGRA~1/MIB055~1/2022/Preview/VC/Tools/MSVC/1442~1.343/bin/Hostx64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.42.34321.1
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:67 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-3i2zgg"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-3i2zgg"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-3i2zgg'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_46e03
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_46e03.dir\\CMakeCXXCompilerABI.cpp.obj /FdCMakeFiles\\cmTC_46e03.dir\\ /FS -c "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-3.29\\Modules\\CMakeCXXCompilerABI.cpp"
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_46e03.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_46e03.dir\\CMakeCXXCompilerABI.cpp.obj  /out:cmTC_46e03.exe /implib:cmTC_46e03.lib /pdb:cmTC_46e03.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:173 (message)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(\\.[a-z]+)?|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/PROGRA~1/MIB055~1/2022/Preview/VC/Tools/MSVC/1442~1.343/bin/Hostx64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake:40 (message)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake:210 (cmake_determine_linker_id)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/PROGRA~1/MIB055~1/2022/Preview/VC/Tools/MSVC/1442~1.343/bin/Hostx64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.42.34321.1
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "vendor/libzmq/CMakeLists.txt:20 (include)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-els7lp"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-els7lp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-els7lp'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_3685a
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo -DCMAKE_HAVE_LIBC_PTHREAD  /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_3685a.dir\\src.c.obj /FdCMakeFiles\\cmTC_3685a.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-els7lp\\src.c
+        FAILED: CMakeFiles/cmTC_3685a.dir/src.c.obj 
+        C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo -DCMAKE_HAVE_LIBC_PTHREAD  /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_3685a.dir\\src.c.obj /FdCMakeFiles\\cmTC_3685a.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-els7lp\\src.c
+        C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-els7lp\\src.c(1): fatal error C1083: Cannot open include file: 'pthread.h': No such file or directory
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/FindThreads.cmake:175 (_threads_check_lib)"
+      - "vendor/libzmq/CMakeLists.txt:20 (include)"
+    checks:
+      - "Looking for pthread_create in pthreads"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-n4dl0e"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-n4dl0e"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREADS_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-n4dl0e'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_808d7
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS /W3 -DCHECK_FUNCTION_EXISTS=pthread_create /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_808d7.dir\\CheckFunctionExists.c.obj /FdCMakeFiles\\cmTC_808d7.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-n4dl0e\\CheckFunctionExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_808d7.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_808d7.dir\\CheckFunctionExists.c.obj  /out:cmTC_808d7.exe /implib:cmTC_808d7.lib /pdb:cmTC_808d7.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  pthreads.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        FAILED: cmTC_808d7.exe 
+        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_808d7.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_808d7.dir\\CheckFunctionExists.c.obj  /out:cmTC_808d7.exe /implib:cmTC_808d7.lib /pdb:cmTC_808d7.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  pthreads.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        LINK Pass 1: command "C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_808d7.dir\\CheckFunctionExists.c.obj /out:cmTC_808d7.exe /implib:cmTC_808d7.lib /pdb:cmTC_808d7.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_808d7.dir/intermediate.manifest CMakeFiles\\cmTC_808d7.dir/manifest.res" failed (exit code 1104) with the following output:
+        LINK : fatal error LNK1104: cannot open file 'pthreads.lib'\x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/FindThreads.cmake:112 (CHECK_LIBRARY_EXISTS)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/FindThreads.cmake:176 (_threads_check_lib)"
+      - "vendor/libzmq/CMakeLists.txt:20 (include)"
+    checks:
+      - "Looking for pthread_create in pthread"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-xgjop8"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-xgjop8"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "CMAKE_HAVE_PTHREAD_CREATE"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-xgjop8'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_83a57
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS /W3 -DCHECK_FUNCTION_EXISTS=pthread_create /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_83a57.dir\\CheckFunctionExists.c.obj /FdCMakeFiles\\cmTC_83a57.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-xgjop8\\CheckFunctionExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_83a57.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_83a57.dir\\CheckFunctionExists.c.obj  /out:cmTC_83a57.exe /implib:cmTC_83a57.lib /pdb:cmTC_83a57.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  pthread.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        FAILED: cmTC_83a57.exe 
+        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_83a57.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_83a57.dir\\CheckFunctionExists.c.obj  /out:cmTC_83a57.exe /implib:cmTC_83a57.lib /pdb:cmTC_83a57.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  pthread.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        LINK Pass 1: command "C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_83a57.dir\\CheckFunctionExists.c.obj /out:cmTC_83a57.exe /implib:cmTC_83a57.lib /pdb:cmTC_83a57.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_83a57.dir/intermediate.manifest CMakeFiles\\cmTC_83a57.dir/manifest.res" failed (exit code 1104) with the following output:
+        LINK : fatal error LNK1104: cannot open file 'pthread.lib'\x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckCXXSymbolExists.cmake:72 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "vendor/libzmq/CMakeLists.txt:482 (check_cxx_symbol_exists)"
+    checks:
+      - "Looking for pselect"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-owlumj"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-owlumj"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_MODULE_PATH: "C:/Users/Students/Downloads/HelloZmq/vendor/libzmq;C:/Users/Students/Downloads/HelloZmq/vendor/libzmq/builds/cmake/Modules"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "HAVE_PSELECT"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-owlumj'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_1a191
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_1a191.dir\\CheckSymbolExists.cxx.obj /FdCMakeFiles\\cmTC_1a191.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-owlumj\\CheckSymbolExists.cxx
+        FAILED: CMakeFiles/cmTC_1a191.dir/CheckSymbolExists.cxx.obj 
+        C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_1a191.dir\\CheckSymbolExists.cxx.obj /FdCMakeFiles\\cmTC_1a191.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-owlumj\\CheckSymbolExists.cxx
+        C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-owlumj\\CheckSymbolExists.cxx(2): fatal error C1083: Cannot open include file: 'sys/select.h': No such file or directory
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckCXXSymbolExists.cmake:72 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "vendor/libzmq/CMakeLists.txt:501 (check_cxx_symbol_exists)"
+    checks:
+      - "Looking for posix_memalign"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-gsaatp"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-gsaatp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_MODULE_PATH: "C:/Users/Students/Downloads/HelloZmq/vendor/libzmq;C:/Users/Students/Downloads/HelloZmq/vendor/libzmq/builds/cmake/Modules"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "HAVE_POSIX_MEMALIGN"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-gsaatp'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_489ed
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_489ed.dir\\CheckSymbolExists.cxx.obj /FdCMakeFiles\\cmTC_489ed.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-gsaatp\\CheckSymbolExists.cxx
+        FAILED: CMakeFiles/cmTC_489ed.dir/CheckSymbolExists.cxx.obj 
+        C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_489ed.dir\\CheckSymbolExists.cxx.obj /FdCMakeFiles\\cmTC_489ed.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-gsaatp\\CheckSymbolExists.cxx
+        C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-gsaatp\\CheckSymbolExists.cxx(8): error C2065: 'posix_memalign': undeclared identifier
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "vendor/libzmq/CMakeLists.txt:505 (check_include_files)"
+    checks:
+      - "Looking for include file windows.h"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-6ugtes"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-6ugtes"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_MODULE_PATH: "C:/Users/Students/Downloads/HelloZmq/vendor/libzmq;C:/Users/Students/Downloads/HelloZmq/vendor/libzmq/builds/cmake/Modules"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "ZMQ_HAVE_WINDOWS"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-6ugtes'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_747f7
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_747f7.dir\\ZMQ_HAVE_WINDOWS.c.obj /FdCMakeFiles\\cmTC_747f7.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-6ugtes\\ZMQ_HAVE_WINDOWS.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_747f7.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_747f7.dir\\ZMQ_HAVE_WINDOWS.c.obj  /out:cmTC_747f7.exe /implib:cmTC_747f7.lib /pdb:cmTC_747f7.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "vendor/libzmq/CMakeLists.txt:512 (check_include_files)"
+    checks:
+      - "Looking for include files winsock2.h, afunix.h"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-4imiw5"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-4imiw5"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_MODULE_PATH: "C:/Users/Students/Downloads/HelloZmq/vendor/libzmq;C:/Users/Students/Downloads/HelloZmq/vendor/libzmq/builds/cmake/Modules"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "ZMQ_HAVE_IPC"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-4imiw5'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_4b2ca
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_4b2ca.dir\\ZMQ_HAVE_IPC.c.obj /FdCMakeFiles\\cmTC_4b2ca.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-4imiw5\\ZMQ_HAVE_IPC.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_4b2ca.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_4b2ca.dir\\ZMQ_HAVE_IPC.c.obj  /out:cmTC_4b2ca.exe /implib:cmTC_4b2ca.lib /pdb:cmTC_4b2ca.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckSourceCompiles.cmake:77 (cmake_check_source_compiles)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckStructHasMember.cmake:77 (CHECK_SOURCE_COMPILES)"
+      - "vendor/libzmq/CMakeLists.txt:514 (check_struct_has_member)"
+    checks:
+      - "Performing Test ZMQ_HAVE_STRUCT_SOCKADDR_UN"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-hegy7r"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-hegy7r"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_MODULE_PATH: "C:/Users/Students/Downloads/HelloZmq/vendor/libzmq;C:/Users/Students/Downloads/HelloZmq/vendor/libzmq/builds/cmake/Modules"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "ZMQ_HAVE_STRUCT_SOCKADDR_UN"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-hegy7r'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_95e46
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo -DZMQ_HAVE_STRUCT_SOCKADDR_UN  /DWIN32 /D_WINDOWS /W3  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_95e46.dir\\src.c.obj /FdCMakeFiles\\cmTC_95e46.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-hegy7r\\src.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_95e46.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_95e46.dir\\src.c.obj  /out:cmTC_95e46.exe /implib:cmTC_95e46.lib /pdb:cmTC_95e46.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckIncludeFiles.cmake:132 (try_compile)"
+      - "vendor/libzmq/CMakeLists.txt:521 (check_include_files)"
+    checks:
+      - "Looking for include file condition_variable"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-t9y2a8"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-t9y2a8"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_MODULE_PATH: "C:/Users/Students/Downloads/HelloZmq/vendor/libzmq;C:/Users/Students/Downloads/HelloZmq/vendor/libzmq/builds/cmake/Modules"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "ZMQ_HAVE_STL_CONDITION_VARIABLE"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-t9y2a8'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_f7196
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_f7196.dir\\ZMQ_HAVE_STL_CONDITION_VARIABLE.cpp.obj /FdCMakeFiles\\cmTC_f7196.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-t9y2a8\\ZMQ_HAVE_STL_CONDITION_VARIABLE.cpp
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_f7196.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_f7196.dir\\ZMQ_HAVE_STL_CONDITION_VARIABLE.cpp.obj  /out:cmTC_f7196.exe /implib:cmTC_f7196.lib /pdb:cmTC_f7196.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckCXXSymbolExists.cmake:72 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "vendor/libzmq/CMakeLists.txt:569 (check_cxx_symbol_exists)"
+    checks:
+      - "Looking for WSAStartup"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-yks9vy"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-yks9vy"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_MODULE_PATH: "C:/Users/Students/Downloads/HelloZmq/vendor/libzmq;C:/Users/Students/Downloads/HelloZmq/vendor/libzmq/builds/cmake/Modules"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "HAVE_WS2_32"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-yks9vy'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_43950
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_43950.dir\\CheckSymbolExists.cxx.obj /FdCMakeFiles\\cmTC_43950.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-yks9vy\\CheckSymbolExists.cxx
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_43950.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_43950.dir\\CheckSymbolExists.cxx.obj  /out:cmTC_43950.exe /implib:cmTC_43950.lib /pdb:cmTC_43950.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  ws2_32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckCXXSymbolExists.cmake:72 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "vendor/libzmq/CMakeLists.txt:575 (check_cxx_symbol_exists)"
+    checks:
+      - "Looking for UuidCreateSequential"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-5n5mbi"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-5n5mbi"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_MODULE_PATH: "C:/Users/Students/Downloads/HelloZmq/vendor/libzmq;C:/Users/Students/Downloads/HelloZmq/vendor/libzmq/builds/cmake/Modules"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "HAVE_RPCRT4"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-5n5mbi'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_84d48
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_84d48.dir\\CheckSymbolExists.cxx.obj /FdCMakeFiles\\cmTC_84d48.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-5n5mbi\\CheckSymbolExists.cxx
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_84d48.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_84d48.dir\\CheckSymbolExists.cxx.obj  /out:cmTC_84d48.exe /implib:cmTC_84d48.lib /pdb:cmTC_84d48.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  rpcrt4.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckCXXSymbolExists.cmake:72 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "vendor/libzmq/CMakeLists.txt:578 (check_cxx_symbol_exists)"
+    checks:
+      - "Looking for GetAdaptersAddresses"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-0rt0ur"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-0rt0ur"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_MODULE_PATH: "C:/Users/Students/Downloads/HelloZmq/vendor/libzmq;C:/Users/Students/Downloads/HelloZmq/vendor/libzmq/builds/cmake/Modules"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "HAVE_IPHLAPI"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-0rt0ur'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_28df2
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_28df2.dir\\CheckSymbolExists.cxx.obj /FdCMakeFiles\\cmTC_28df2.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-0rt0ur\\CheckSymbolExists.cxx
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_28df2.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_28df2.dir\\CheckSymbolExists.cxx.obj  /out:cmTC_28df2.exe /implib:cmTC_28df2.lib /pdb:cmTC_28df2.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  iphlpapi.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckCXXSymbolExists.cmake:72 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "vendor/libzmq/CMakeLists.txt:582 (check_cxx_symbol_exists)"
+    checks:
+      - "Looking for if_nametoindex"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-8gpgu5"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-8gpgu5"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_MODULE_PATH: "C:/Users/Students/Downloads/HelloZmq/vendor/libzmq;C:/Users/Students/Downloads/HelloZmq/vendor/libzmq/builds/cmake/Modules"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "HAVE_IF_NAMETOINDEX"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-8gpgu5'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_c75eb
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_c75eb.dir\\CheckSymbolExists.cxx.obj /FdCMakeFiles\\cmTC_c75eb.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-8gpgu5\\CheckSymbolExists.cxx
+        FAILED: CMakeFiles/cmTC_c75eb.dir/CheckSymbolExists.cxx.obj 
+        C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_c75eb.dir\\CheckSymbolExists.cxx.obj /FdCMakeFiles\\cmTC_c75eb.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-8gpgu5\\CheckSymbolExists.cxx
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ipifcons.h(248): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ipifcons.h(248): error C2146: syntax error: missing ';' before identifier 'IFTYPE'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ipifcons.h(248): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\iprtrmib.h(145): error C3646: 'dwVarId': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\iprtrmib.h(145): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\iprtrmib.h(146): error C3646: 'rgdwVarIndex': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\iprtrmib.h(146): error C2143: syntax error: missing ',' before '['
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\iprtrmib.h(146): error C2238: unexpected token(s) preceding ';'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(23): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(23): error C2146: syntax error: missing ';' before identifier 'NET_IF_COMPARTMENT_ID'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(23): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(23): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(31): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(31): error C2146: syntax error: missing ';' before identifier 'NET_IF_NETWORK_GUID'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(31): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(31): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(44): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(44): error C2146: syntax error: missing ';' before identifier 'NET_IF_OBJECT_ID'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(44): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(44): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(93): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(106): error C3646: 'ifRcvAddressLength': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(106): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(107): error C3646: 'ifRcvAddressOffset': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(107): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(112): error C3646: 'ifAliasLength': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(112): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(113): error C3646: 'ifAliasOffset': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(113): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(120): error C3646: 'Value': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(120): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(123): error C3646: 'Reserved': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(123): error C2059: syntax error: ':'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(123): error C2334: unexpected token(s) preceding ':'; skipping apparent function body
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(126): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(141): error C3646: 'NET_LUID': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(141): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(141): error C2378: '_NET_LUID_LH::NET_LUID_LH': redefinition; symbol cannot be overloaded with a typedef
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(127): note: see declaration of '_NET_LUID_LH::NET_LUID_LH'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(142): error C2143: syntax error: missing ';' before '*'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(142): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(142): error C2238: unexpected token(s) preceding ';'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(154): error C3646: 'NET_IFTYPE': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(154): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(154): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(279): error C2059: syntax error: 'constant'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(280): error C3646: 'USHORT': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(280): error C3646: 'Length': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(279): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(279): warning C4183: '_Field_range_': missing return type; assumed to be a member function returning 'int'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(281): error C3646: 'String': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(281): error C2143: syntax error: missing ',' before '['
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(281): error C2238: unexpected token(s) preceding ';'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(288): error C2059: syntax error: 'constant'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(289): error C3646: 'USHORT': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(289): error C3646: 'Length': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(288): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(288): warning C4183: '_Field_range_': missing return type; assumed to be a member function returning 'int'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(290): error C3646: 'Address': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(290): error C2143: syntax error: missing ',' before '['
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(290): error C2238: unexpected token(s) preceding ';'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(352): error C3646: 'ifPromiscuousMode': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(352): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(353): error C3646: 'ifDeviceWakeUpEnable': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(353): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(354): error C3646: 'XmitLinkSpeed': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(354): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(355): error C3646: 'RcvLinkSpeed': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(355): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(357): error C3646: 'ifLastChange': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(357): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(358): error C3646: 'ifCounterDiscontinuityTime': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(358): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(359): error C3646: 'ifInUnknownProtos': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(359): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(364): error C3646: 'ifInDiscards': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(364): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(365): error C3646: 'ifInErrors': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(365): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(366): error C3646: 'ifHCInOctets': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(366): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(367): error C3646: 'ifHCInUcastPkts': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(367): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(368): error C3646: 'ifHCInMulticastPkts': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(368): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(369): error C3646: 'ifHCInBroadcastPkts': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(369): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(370): error C3646: 'ifHCOutOctets': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(370): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(371): error C3646: 'ifHCOutUcastPkts': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(371): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(372): error C3646: 'ifHCOutMulticastPkts': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(372): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(373): error C3646: 'ifHCOutBroadcastPkts': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(373): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(374): error C3646: 'ifOutErrors': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(374): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(375): error C3646: 'ifOutDiscards': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(375): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(376): error C3646: 'ifHCInUcastOctets': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(376): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(377): error C3646: 'ifHCInMulticastOctets': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(377): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(378): error C3646: 'ifHCInBroadcastOctets': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(378): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(379): error C3646: 'ifHCOutUcastOctets': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(379): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(380): error C3646: 'ifHCOutMulticastOctets': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(380): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(381): error C3646: 'ifHCOutBroadcastOctets': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(381): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(382): error C3646: 'CompartmentId': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifdef.h(382): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(32): error C2159: more than one storage class specified
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(32): error C2236: unexpected token 'struct'. Did you forget a ';'?
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(33): error C2059: syntax error: '{'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(33): error C2143: syntax error: missing ';' before '{'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(33): error C2447: '{': missing function header (old-style formal list?)
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(35): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(35): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(49): error C3646: 'wszName': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(49): error C2143: syntax error: missing ',' before '['
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(49): error C2238: unexpected token(s) preceding ';'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(50): error C3646: 'dwIndex': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(50): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(51): error C3646: 'dwType': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(51): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(52): error C3646: 'dwMtu': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(52): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(53): error C3646: 'dwSpeed': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(53): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(54): error C3646: 'dwPhysAddrLen': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(54): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(55): error C3646: 'bPhysAddr': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(55): error C2143: syntax error: missing ',' before '['
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(55): error C2238: unexpected token(s) preceding ';'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(56): error C3646: 'dwAdminStatus': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(56): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(58): error C3646: 'dwLastChange': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(58): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(59): error C3646: 'dwInOctets': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(59): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(60): error C3646: 'dwInUcastPkts': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(60): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(61): error C3646: 'dwInNUcastPkts': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(61): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(62): error C3646: 'dwInDiscards': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(62): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(63): error C3646: 'dwInErrors': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(63): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(64): error C3646: 'dwInUnknownProtos': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(64): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(65): error C3646: 'dwOutOctets': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(65): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(66): error C3646: 'dwOutUcastPkts': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(66): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(67): error C3646: 'dwOutNUcastPkts': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(67): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(68): error C3646: 'dwOutDiscards': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(68): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(69): error C3646: 'dwOutErrors': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(69): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(70): error C3646: 'dwOutQLen': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(70): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(71): error C3646: 'dwDescrLen': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(71): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(72): error C3646: 'bDescr': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(72): error C2143: syntax error: missing ',' before '['
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(72): error C2238: unexpected token(s) preceding ';'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(76): error C3646: 'dwNumEntries': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\ifmib.h(76): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\nldef.h(218): error C3646: 'NlChecksumSupported': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\nldef.h(218): error C2059: syntax error: ':'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\nldef.h(218): error C2334: unexpected token(s) preceding ':'; skipping apparent function body
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\nldef.h(226): error C2059: syntax error: ','
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\nldef.h(226): error C2238: unexpected token(s) preceding ';'
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\nldef.h(244): error C3646: 'Bandwidth': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\nldef.h(244): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\nldef.h(245): error C3646: 'Instability': unknown override specifier
+        C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\shared\\nldef.h(245): fatal error C1003: error count exceeds 100; stopping compilation
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckLibraryExists.cmake:69 (try_compile)"
+      - "vendor/libzmq/CMakeLists.txt:586 (check_library_exists)"
+    checks:
+      - "Looking for fopen in ws2"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-mytc8g"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-mytc8g"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS /W3"
+      CMAKE_MODULE_PATH: "C:/Users/Students/Downloads/HelloZmq/vendor/libzmq;C:/Users/Students/Downloads/HelloZmq/vendor/libzmq/builds/cmake/Modules"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "HAVE_WS2"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-mytc8g'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_bf50f
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo   /DWIN32 /D_WINDOWS /W3 -DCHECK_FUNCTION_EXISTS=fopen /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_bf50f.dir\\CheckFunctionExists.c.obj /FdCMakeFiles\\cmTC_bf50f.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-mytc8g\\CheckFunctionExists.c
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_bf50f.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_bf50f.dir\\CheckFunctionExists.c.obj  /out:cmTC_bf50f.exe /implib:cmTC_bf50f.lib /pdb:cmTC_bf50f.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  ws2.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        FAILED: cmTC_bf50f.exe 
+        C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_bf50f.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_bf50f.dir\\CheckFunctionExists.c.obj  /out:cmTC_bf50f.exe /implib:cmTC_bf50f.lib /pdb:cmTC_bf50f.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  ws2.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        LINK Pass 1: command "C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_bf50f.dir\\CheckFunctionExists.c.obj /out:cmTC_bf50f.exe /implib:cmTC_bf50f.lib /pdb:cmTC_bf50f.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console ws2.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTFILE:CMakeFiles\\cmTC_bf50f.dir/intermediate.manifest CMakeFiles\\cmTC_bf50f.dir/manifest.res" failed (exit code 1104) with the following output:
+        LINK : fatal error LNK1104: cannot open file 'ws2.lib'\x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckCXXSymbolExists.cmake:72 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "vendor/libzmq/CMakeLists.txt:603 (check_cxx_symbol_exists)"
+    checks:
+      - "Looking for clock_gettime"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-31emai"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-31emai"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_MODULE_PATH: "C:/Users/Students/Downloads/HelloZmq/vendor/libzmq;C:/Users/Students/Downloads/HelloZmq/vendor/libzmq/builds/cmake/Modules"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "HAVE_CLOCK_GETTIME"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-31emai'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_f3aa7
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_f3aa7.dir\\CheckSymbolExists.cxx.obj /FdCMakeFiles\\cmTC_f3aa7.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-31emai\\CheckSymbolExists.cxx
+        FAILED: CMakeFiles/cmTC_f3aa7.dir/CheckSymbolExists.cxx.obj 
+        C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_f3aa7.dir\\CheckSymbolExists.cxx.obj /FdCMakeFiles\\cmTC_f3aa7.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-31emai\\CheckSymbolExists.cxx
+        C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-31emai\\CheckSymbolExists.cxx(8): error C2065: 'clock_gettime': undeclared identifier
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "vendor/libzmq/CMakeLists.txt:639 (check_cxx_compiler_flag)"
+      - "vendor/libzmq/CMakeLists.txt:674 (zmq_check_cxx_flag_prepend)"
+    checks:
+      - "Performing Test HAVE_FLAG_/W3"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-qrc8fx"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-qrc8fx"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_MODULE_PATH: "C:/Users/Students/Downloads/HelloZmq/vendor/libzmq;C:/Users/Students/Downloads/HelloZmq/vendor/libzmq/builds/cmake/Modules"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "HAVE_FLAG_/W3"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-qrc8fx'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_e511b
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP   /DWIN32 /D_WINDOWS /W3 /GR /EHsc  /MDd /Zi /Ob0 /Od /RTC1   -DHAVE_FLAG_/W3 /W3 /showIncludes /FoCMakeFiles\\cmTC_e511b.dir\\src.cxx.obj /FdCMakeFiles\\cmTC_e511b.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-qrc8fx\\src.cxx
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_e511b.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_e511b.dir\\src.cxx.obj  /out:cmTC_e511b.exe /implib:cmTC_e511b.lib /pdb:cmTC_e511b.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.29/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "vendor/libzmq/builds/cmake/Modules/ZMQSourceRunChecks.cmake:300 (check_cxx_source_compiles)"
+      - "vendor/libzmq/CMakeLists.txt:753 (zmq_check_noexcept)"
+    checks:
+      - "Performing Test ZMQ_HAVE_NOEXCEPT"
+    directories:
+      source: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-56flsa"
+      binary: "C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-56flsa"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /W3"
+      CMAKE_MODULE_PATH: "C:/Users/Students/Downloads/HelloZmq/vendor/libzmq;C:/Users/Students/Downloads/HelloZmq/vendor/libzmq/builds/cmake/Modules"
+      VCPKG_INSTALLED_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg/installed"
+      VCPKG_PREFER_SYSTEM_LIBS: "OFF"
+      VCPKG_TARGET_TRIPLET: "x64-windows"
+      Z_VCPKG_ROOT_DIR: "C:/Users/Students/Downloads/Varjo_SDK_for_Custom_Engines_4.4.0 (1)/varjo-sdk/examples/Hello/vcpkg"
+    buildResult:
+      variable: "ZMQ_HAVE_NOEXCEPT"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/Students/Downloads/HelloZmq/out/build/x64-Debug/CMakeFiles/CMakeScratch/TryCompile-56flsa'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Preview/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe" -v cmTC_086ab
+        [1/2] C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -DZMQ_HAVE_NOEXCEPT  /DWIN32 /D_WINDOWS /W3 /GR /EHsc /W3  /MDd /Zi /Ob0 /Od /RTC1 /showIncludes /FoCMakeFiles\\cmTC_086ab.dir\\src.cxx.obj /FdCMakeFiles\\cmTC_086ab.dir\\ /FS -c C:\\Users\\Students\\Downloads\\HelloZmq\\out\\build\\x64-Debug\\CMakeFiles\\CMakeScratch\\TryCompile-56flsa\\src.cxx
+        [2/2] C:\\WINDOWS\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\Microsoft Visual Studio\\2022\\Preview\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin\\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\\cmTC_086ab.dir --rc=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\rc.exe --mt=C:\\PROGRA~2\\WI3CF2~1\\10\\bin\\100226~1.0\\x64\\mt.exe --manifests  -- C:\\PROGRA~1\\MIB055~1\\2022\\Preview\\VC\\Tools\\MSVC\\1442~1.343\\bin\\Hostx64\\x64\\link.exe /nologo CMakeFiles\\cmTC_086ab.dir\\src.cxx.obj  /out:cmTC_086ab.exe /implib:cmTC_086ab.lib /pdb:cmTC_086ab.pdb /version:0.0 /machine:x64  /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib && cd ."
+        
+      exitCode: 0
+...
