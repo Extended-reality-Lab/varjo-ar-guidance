@@ -57,7 +57,6 @@ public:
 
     //! Return data streamer instance
     VarjoExamples::DataStreamer& getStreamer() const { return *m_streamer; }
-    //printf("Video output here");
 
 private:
     //! Toggle VST rendering

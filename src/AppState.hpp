@@ -27,7 +27,7 @@ struct AppState {
         bool vrColorCorrectionEnabled{false};             //!< VR color correction enabled flag
         bool chromaKeyingEnabled{false};                  //!< Chroma keying flag
         bool reactToConnectionEvents{true};               //!< Flag for reacting to MR connect/disconnect events
-        bool dataStreamColorEnabled{false};               //!< Color data stream enabled flag
+        bool dataStreamColorEnabled{true};               //!< Color data stream enabled flag
         bool dataStreamCubemapEnabled{false};             //!< Cubemap data stream enabled flag
         bool delayedBufferHandlingEnabled{false};         //!< Delayed data stream buffer handling
         bool undistortEnabled{false};                     //!< Undistort color datastream when saving to file

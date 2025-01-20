@@ -256,6 +256,7 @@ void MRScene::onRender(
         constants.ps.lighting = m_lighting;
         constants.ps.exposureGain = m_exposureGain;
         constants.ps.wbNormalization = m_wbNormalization;
+
         renderer.renderMesh(*m_cubeMesh, constants.vs, constants.ps);
     }
 
@@ -325,6 +326,7 @@ void MRScene::onRender(
 #endif
 
             constants.ps.colorCorrection = glm::vec4(1.0, 1.0, 1.0, 1.0);
+
             renderer.renderMesh(*m_texturedPlaneMesh, constants.vs, constants.ps);
         }
     }

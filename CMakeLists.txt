@@ -144,6 +144,8 @@ set(_sources_app
     ${_src_dir}/AppView.cpp
     ${_src_dir}/MRScene.hpp
     ${_src_dir}/MRScene.cpp
+    ${_src_dir}/precomp.hpp
+    ${_src_dir}/omnidir.cpp
 )
 
 set(_sources_common

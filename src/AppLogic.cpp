@@ -20,16 +20,33 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
-#include <opencv2/opencv.hpp> // import img
-#include <opencv2/core/core.hpp> // blur img
+#include "../include_experimental/Varjo_mr_experimental.h" // For Meshing
 
-using namespace std;
-using namespace cv;
+#include <opencv2/core/core.hpp> // blur img
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp"
+#include <opencv2/ccalib/omnidir.hpp> // Omnidirectional rectification
+#include <opencv2/calib3d/calib3d.hpp> // disparity map algorithms
+#include <opencv2/core/core_c.h>
+#include <opencv2/core/types_c.h> // cvPoint2D64f datatype for calculating q matrix
 
 // VarjoExamples namespace contains simple example wrappers for using Varjo API features.
 // These are only meant to be used in SDK example applications. In your own application,
 // use your own production quality integration layer.
 using namespace VarjoExamples;
+using namespace std;
+using namespace cv;
+
+// globals tracking the contents of both headset eyes. Necessary or they'll reset every frame
+Mat leftEyeImage, rightEyeImage, GrayL, GrayR;
+cv::Mat disMap;
+cv::Mat kL, dL, xiL; // left cam intrinsics
+cv::Mat kR, dR, xiR; // right cam intrinsics
+cv::Mat R, T; // cam rotation and translation
+cv::Mat XYZ; // Depth Map
+
+bool trackbarsCreated = 0;
+string str_DistFromMouse = "Collecting information from mouse..."; // stores distance from mouse to objects in
 
 //---------------------------------------------------------------------------
 
@@ -275,12 +292,10 @@ void AppLogic::setState(const AppState& appState, bool force)
         m_streamer->setDelayedBufferHandlingEnabled(appState.options.delayedBufferHandlingEnabled);
         LOG_INFO("Buffer handling: %s", appState.options.delayedBufferHandlingEnabled ? "DELAYED" : "IMMEDIATE");
     }
-    //LOG_INFO("Break1");
 
     if (force || appState.options.undistortEnabled != prevState.options.undistortEnabled) {
         LOG_INFO("Color stream undistortion: %s", appState.options.undistortEnabled ? "ENABLED" : "DISABLED");
     }
-    //LOG_INFO("Break2");
 
     // Data stream: YUV
     if (force || appState.options.dataStreamColorEnabled != prevState.options.dataStreamColorEnabled) {
@@ -309,7 +324,6 @@ void AppLogic::setState(const AppState& appState, bool force)
                 }
             } else {
                 // No streams running, just start our color data stream
-                LOG_INFO("StartStreaming??");
                 m_streamer->startDataStream(streamType, streamFormat, streamChannels);
             }
         } else {
@@ -344,7 +358,6 @@ void AppLogic::setState(const AppState& appState, bool force)
         }
 
         // Write stream status back to state
-        LOG_INFO("End of the line almost");
         m_appState.options.dataStreamColorEnabled = m_streamer->isStreaming(streamType, streamFormat);
     }
 
@@ -384,6 +397,7 @@ void AppLogic::setState(const AppState& appState, bool force)
 void AppLogic::onFrameReceived(const DataStreamer::Frame& frame)
 {
     const auto& streamFrame = frame.metadata.streamFrame;
+
     std::lock_guard<std::mutex> streamLock(m_frameDataMutex);
     switch (streamFrame.type) {
         case varjo_StreamType_DistortedColor: {
@@ -404,6 +418,22 @@ void AppLogic::onFrameReceived(const DataStreamer::Frame& frame)
             LOG_ERROR("Unsupported stream type: %d", streamFrame.type);
             assert(false);
         } break;
+    }
+}
+
+// Return outputs of mouse click on image in specified window
+void onMouseCV(int action, int x, int y, int, void*)
+{
+    float depth = XYZ.at<float>(y, x);
+    float depth_converted = depth * -10.56818019; // TODO: Incorrect conversion
+        
+    if (action == cv::EVENT_LBUTTONDOWN) {
+        std::cout << "Depth at (" << x << ", " << y << "): " << depth << " pixels" << std::endl;
+        std::cout << "That's " << depth_converted * 12 << " inches or " << depth_converted << " feet" << std::endl;
+    }
+
+    if (action == cv::EVENT_MOUSEMOVE) {
+        str_DistFromMouse = "(" + std::to_string(x) + "," + std::to_string(y) + ") = " + std::to_string(depth_converted * 12) + " inches or " + std::to_string(depth_converted) + " feet";
     }
 }
 
@@ -499,9 +529,9 @@ void AppLogic::update()
                 const auto h = colorFrame.metadata.bufferMetadata.height / c_downScaleFactor;
                 const auto rowStride = w * 4;
 
-                // Projection for rectified image. Optionally we can use our view projection here, or undistorted fixed default.
-                std::optional<varjo_Matrix> projection = std::nullopt;
-                // projection = m_varjoView->getLayer(0).getProjection(ch);
+                // Projection for rectified image. In case no projection matrix is provided, uniform projection will be used.
+                std::optional<varjo_Matrix> projection = m_varjoView->getLayer(0).getProjection(static_cast<int>(ch));
+                // std::optional<varjo_Matrix> projection = std::nullopt;
 
                 // Convert to rectified RGBA in lower resolution
                 std::vector<uint8_t> bufferRGBA(rowStride * h);
@@ -510,17 +540,6 @@ void AppLogic::update()
 
                 // Update frame data
                 m_scene->updateColorFrame(static_cast<int>(ch), glm::ivec2(w, h), varjo_TextureFormat_R8G8B8A8_UNORM, rowStride, bufferRGBA.data());
-
-                // grab buffer data and convert to appropriate form for streaming via CVLab
-                Mat BGRImage;
-                
-                Mat rgba_mat = cv::Mat(h, w, CV_8UC4, bufferRGBA.data());
-                cv::cvtColor(rgba_mat, BGRImage, COLOR_RGBA2BGR);
-
-
-
-                cv::imshow("outputted image" + std::to_string(ch), BGRImage);
-                cv::waitKey(1);
             } else {
                 const auto w = colorFrame.metadata.bufferMetadata.width;
                 const auto h = colorFrame.metadata.bufferMetadata.height;
@@ -533,16 +552,172 @@ void AppLogic::update()
                 // Update frame data
                 m_scene->updateColorFrame(static_cast<int>(ch), glm::ivec2(w, h), varjo_TextureFormat_R8G8B8A8_UNORM, rowStride, bufferRGBA.data());
 
-                // grab buffer data and convert to appropriate form for streaming via CVLab. Blur image
-                Mat BGRImage;
-                Mat blurred_image;
+                const auto depthOut = "depthOut";
+                cv::namedWindow(depthOut);
+                cv::setMouseCallback(depthOut, onMouseCV);
+
                 Mat rgba_mat = cv::Mat(h, w, CV_8UC4, bufferRGBA.data());
+                Size imgSize(w, h);
 
-                cv::cvtColor(rgba_mat, BGRImage, COLOR_RGBA2BGR);
-                cv::GaussianBlur(BGRImage, blurred_image, Size(15, 15), 0);
+                
+                int numChannels = rgba_mat.channels();
 
-                cv::imshow("blurred outputted image" + std::to_string(ch), blurred_image);
-                cv::waitKey(1);
+                int numDisparity = 4;
+                int blockSize = 5;
+                int min_disp = 0;
+                int p1 = 2;
+                int p2 = 20;
+                int disp12MaxDiff = 30;
+                int uniquenessRatio = 0;
+                int speckleWindowSize = 50;
+                int speckleRange = 2;
+                int prefilterCap = 5;
+                
+                if (trackbarsCreated == 0){
+                    cv::createTrackbar("numDisparity", depthOut, &numDisparity, 20);
+                    cv::createTrackbar("blockSize", depthOut, &blockSize, 100);
+                    cv::createTrackbar("min_disp", depthOut, &min_disp, 100);
+                    cv::createTrackbar("p1", depthOut, &p1, 100);
+                    cv::createTrackbar("p2", depthOut, &p2, 300);
+                    cv::createTrackbar("disp12MaxDiff", depthOut, &disp12MaxDiff, 100);
+                    cv::createTrackbar("uniquenessRatio", depthOut, &uniquenessRatio, 100);
+                    cv::createTrackbar("specklewindowsize", depthOut, &speckleWindowSize, 100);
+                    cv::createTrackbar("speckleRange", depthOut, &speckleRange, 100);
+                    cv::createTrackbar("prefiltercap", depthOut, &prefilterCap, 100);
+                    trackbarsCreated = 1;
+                }
+
+                numDisparity = cv::getTrackbarPos("numDisparity", depthOut);
+                blockSize = cv::getTrackbarPos("blockSize", depthOut);
+                min_disp = cv::getTrackbarPos("min_disp", depthOut);
+                p1 = cv::getTrackbarPos("p1", depthOut);
+                p2 = cv::getTrackbarPos("p2", depthOut);
+                disp12MaxDiff = cv::getTrackbarPos("disp12MaxDiff", depthOut);
+                uniquenessRatio = cv::getTrackbarPos("uniquenessRatio", depthOut);
+                speckleWindowSize = cv::getTrackbarPos("specklewindowsize", depthOut);
+                speckleRange = cv::getTrackbarPos("speckleRange", depthOut);
+                prefilterCap = cv::getTrackbarPos("prefiltercap", depthOut);
+
+                numDisparity = std::max(1, numDisparity * 16);
+                blockSize = (blockSize % 2 == 0) ? blockSize + 1 : blockSize;
+                min_disp *= -1;
+                uniquenessRatio = uniquenessRatio;
+                p1 = p1 * numChannels * blockSize * blockSize; //8 to 32
+                p2 = p2 * numChannels * blockSize * blockSize; // 32 to 56*/
+                
+
+                if (ch==0){ // Left Eye
+                    cv::cvtColor(rgba_mat, leftEyeImage, cv::COLOR_RGBA2BGR);
+                    cv::cvtColor(leftEyeImage, GrayL, cv::COLOR_BGR2GRAY);
+                    GrayL.convertTo(GrayL, CV_8U);
+
+                    kL = (cv::Mat_<double>(3,3) <<
+                    (0.431721 * w),    0,                   (0.502108 * w),
+                    0,                 (0.431721 * h),      (0.509123 * h),
+                    0,                 0,                   1 
+                    );
+
+                    dL = (cv::Mat_<double>(1,4) << 
+                    -0.152559,
+                    0.024209,
+                    -0.000175,
+                    -0.000107
+                    );
+
+                    xiL = (cv::Mat_<double>(1,1) << 0.085909);
+
+                }
+                if (ch==1){ // Right Eye
+                    cv::cvtColor(rgba_mat, rightEyeImage, cv::COLOR_RGBA2BGR);
+                    cv::cvtColor(rightEyeImage, GrayR, cv::COLOR_BGR2GRAY);
+                    GrayR.convertTo(GrayR, CV_8U);
+
+                    kR = (cv::Mat_<double>(3,3) <<
+                    (0.423736 * w),    0,                   (0.503964 * w),
+                    0,                 (0.423736 * h),      (0.507224 * h),
+                    0,                 0,                   1 
+                    );
+
+                    dR = (cv::Mat_<double>(1,4) << 
+                    -0.152976,
+                    0.023694,
+                    -0.000302,
+                    -0.000316
+                    );
+
+                    xiR = (cv::Mat_<double>(1,1) << 0.068839);
+
+                    R = (cv::Mat_<double>(3, 3) << // manually calculated, corrected rotation matrix
+                        0.99999604094504943076, 
+                        0.0023173339275301227727,
+                        0.001755938946078424719,
+                        -0.0023099358690568524827,
+                        0.99998704268073523836,
+                        -0.0046550356300614758439,
+                        -0.0017673258267597134926,
+                        0.0046515232975054745946,
+                        0.99998750952989840899
+                    );
+
+                    T = (cv::Mat_<double>(3, 1) <<  // image transposed left-right so we have to keep this in right camera setup
+                        -0.062976, 
+                        0.000323, 
+                        -0.000423
+                    );
+
+                }
+                
+                if (!GrayL.empty() && !GrayR.empty() && ch == 1){
+                    cv::Ptr<cv::StereoSGBM> stereo = cv::StereoSGBM::create(min_disp, numDisparity, blockSize, p1, p2, disp12MaxDiff, prefilterCap, uniquenessRatio, speckleWindowSize, speckleRange, false);
+
+                    cv::Mat leftU, rightU, rL, rR;
+                    cv::Matx33f Knew;
+                    cv::Mat map1L, map2L, map1R, map2R, QQ;
+                    cv::Rect ROI;
+
+                    cv::Mat kNew = getOptimalNewCameraMatrix(kR, dR, imgSize, 1, imgSize, &ROI);
+
+                    cv::omnidir::stereoRectify(R, T, rL, rR);
+
+                    cv::omnidir::initUndistortRectifyMap(kL, dL, xiL, rL, kNew, imgSize, CV_32FC1, map1L, map2L, cv::omnidir::RECTIFY_PERSPECTIVE);
+                    cv::omnidir::initUndistortRectifyMap(kR, dR, xiR, R, kNew, imgSize, CV_32FC1, map1R, map2R, cv::omnidir::RECTIFY_PERSPECTIVE);
+
+                    //TODO: Using full color instead of grayscale halves our framerate. Worth it for slightly more detail?
+                    cv::remap(leftEyeImage, leftU, map1L, map2L, INTER_LINEAR);
+                    cv::remap(rightEyeImage, rightU, map1R, map2R, INTER_LINEAR);
+
+                    cv::Mat leftROI = leftU(ROI);
+                    cv::Mat rightROI = rightU(ROI);
+
+                    stereo->compute(leftROI, rightROI, disMap);
+
+                    // src: https://docs.carnegierobotics.com/docs/cookbook/overview.html
+                    double q[] =
+                    {
+                        1, 0, 0, -0.502108,
+                        0, 1, 0, -0.509123,
+                        0, 0, 0, 0.431721,
+                        0, 0, -15.87851034, -0.02947051519
+                    };
+                    cv::Mat Q = Mat(4, 4, CV_64F, q);
+
+                    // Convert disparity map into depth map
+                    Mat floatDisp;
+                    disMap.convertTo(floatDisp, CV_32F, 1.0/16);
+                    reprojectImageTo3D(floatDisp, XYZ, Q, false);
+
+                    // Creates and normalizes a representation of the depth display that's more readable and displayable
+                    cv::Mat depthDisplay;
+                    floatDisp.convertTo(depthDisplay, CV_8U, 255.0 / 16); // Normalize
+                    cv::applyColorMap(depthDisplay, depthDisplay, cv::COLORMAP_JET); // Reconverts image to color
+
+                    // output current disparity map
+                    cv::putText(depthDisplay, str_DistFromMouse, cv::Point(0,h-30), cv::FONT_HERSHEY_COMPLEX , 0.5, CV_RGB(0, 0, 0), 4); //text outline
+                    cv::putText(depthDisplay, str_DistFromMouse, cv::Point(0,h-30), cv::FONT_HERSHEY_COMPLEX , 0.5, CV_RGB(255, 255, 255), 1); // onscreen text with depth info
+
+                    cv::imshow(depthOut, depthDisplay);
+                    cv::waitKey(1);
+                }
             }
         }
     }
