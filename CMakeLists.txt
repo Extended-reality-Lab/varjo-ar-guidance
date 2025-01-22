@@ -111,6 +111,36 @@ target_include_directories(D3DX12 INTERFACE
 )
 add_library(D3DX12::D3DX12 ALIAS D3DX12)
 
+add_subdirectory(vendor/protobuf)
+
+
+add_library(proto-cpp OBJECT "${CMAKE_CURRENT_LIST_DIR}/proto/frame.proto")
+
+target_link_libraries(proto-cpp PUBLIC protobuf::libprotobuf)
+
+set(PROTO_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
+
+target_include_directories(proto-cpp PUBLIC "$<BUILD_INTERFACE:${PROTO_BINARY_DIR}>")
+
+protobuf_generate(
+    TARGET proto-cpp
+    IMPORT_DIRS "${CMAKE_CURRENT_LIST_DIR}/proto"
+    PROTOC_OUT_DIR "${PROTO_BINARY_DIR}")
+
+
+
+
+add_library(proto-python OBJECT "${CMAKE_CURRENT_LIST_DIR}/proto/frame.proto")
+
+target_link_libraries(proto-python PUBLIC protobuf::libprotobuf)
+
+target_include_directories(proto-python PUBLIC "$<BUILD_INTERFACE:${PROTO_BINARY_DIR}>")
+
+    protobuf_generate(
+      TARGET proto-python
+      LANGUAGE python
+      IMPORT_DIRS "${CMAKE_CURRENT_LIST_DIR}/proto"
+      PROTOC_OUT_DIR "${PROTO_BINARY_DIR}")
 
 set(_src_dir ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(_src_common_dir ${CMAKE_CURRENT_SOURCE_DIR}/Common)
@@ -157,8 +187,7 @@ source_group("Common" FILES ${_source_list_common})
 
 set(_target HelloFrame)
 
-# find_package(PkgConfig REQUIRED)
-# pkg_check_modules(ZMQ REQUIRED libzmq)
+
 
 # Create the executable
 add_executable(${_target} ${_source_list} ${_source_list_common})
@@ -179,6 +208,10 @@ set(BUILD_TESTS OFF)
 add_subdirectory(vendor/libzmq)
 add_subdirectory(cppzmq)
 
+# # Add protobuf
+# find_package(Protobuf REQUIRED)
+# include_directories(${PROTOBUF_INCLUDE_DIRS})
+
 # Link libraries
 target_link_libraries(${_target}
     PRIVATE ImGui::ImGui
@@ -192,6 +225,8 @@ target_link_libraries(${_target}
     PRIVATE d3dcompiler
     PRIVATE windowscodecs
     PRIVATE cppzmq
+    proto-cpp
+    proto-python
 )
 
 add_custom_command(

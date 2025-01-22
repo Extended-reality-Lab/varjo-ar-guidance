@@ -8,6 +8,7 @@
 #include <string>
 #include <thread>
 #include <chrono>
+#include <algorithm>
 
 // Varjo includes
 #include <Varjo.h>
@@ -19,6 +20,9 @@
 #include "D3D11Renderer.hpp"
 #include "D3D11MultiLayerView.hpp"
 #include "DataStreamer.hpp"
+
+#include "frame.pb.h"
+
 
 using namespace VarjoExamples;
 
@@ -90,6 +94,8 @@ public:
         varjo_MRSetVideoRender(m_session, varjo_True);
         varjo_MRSetVideoDepthEstimation(m_session, varjo_True);
 
+        
+
         // Initialize ZeroMQ context and publisher
         m_ctx = std::make_unique<zmq::context_t>(1);
         m_publisher = std::make_unique<zmq::socket_t>(*m_ctx, zmq::socket_type::pub);
@@ -118,20 +124,51 @@ public:
     // Frame received callback
     void onFrameReceived(const DataStreamer::Frame& frame)
     {
-
-       
-         zmq::message_t zmq_msg(frame.data.data(),frame.data.size());
-        printf("height: %d\n", frame.metadata.bufferMetadata.height);
-        // printf("Width: %d\n", frame.metadata.bufferMetadata.width);
-        printf("RowStride: %d\n", frame.metadata.bufferMetadata.rowStride);
-        //  printf("size: %d bytes\n", frame.data.size());
+        using namespace std::chrono;
         
+        auto start_time = high_resolution_clock::now();
+        // 
+        // printf("height: %d\n", frame.metadata.bufferMetadata.height);
+        // // // printf("Width: %d\n", frame.metadata.bufferMetadata.width);
+        // printf("RowStride: %d\n", frame.metadata.bufferMetadata.rowStride);
+        // //  printf("size: %d bytes\n", frame.data.size());
+        
+
+        m_protoframe.set_height(frame.metadata.bufferMetadata.rowStride);
+        m_protoframe.set_width(frame.metadata.bufferMetadata.height);
+        std::string_view str_frame((const char*)frame.data.data(), frame.data.size());
+        m_protoframe.set_pixels(str_frame);
+
+
+        if (!m_protoframe.IsInitialized()) {
+            std::cerr << "Error: Message is not fully initialized!" << std::endl;
+            return;
+        } else {
+            std::cout << "Message is initialized." << std::endl;
+        }
+
+
+        m_protobuf_data.resize(m_protoframe.ByteSizeLong());
+
+        if (!m_protoframe.SerializeToArray(m_protobuf_data.data(), m_protobuf_data.size())) {
+            std::cerr << "Failed to serialize protobuf message." << std::endl;
+            return;
+        }
+
+ 
+        zmq::message_t zmq_msg{m_protobuf_data.data(), m_protobuf_data.size()};
+
         // Send the message to the publisher
         m_publisher->send(zmq_msg, zmq::send_flags::none);
 
         // std::cout << "Sent: " << message << std::endl;
 
-        ++msg_count;
+        auto end_time = high_resolution_clock::now();
+        auto total_duration = duration_cast<milliseconds>(end_time - start_time);  
+        std::cout << "Operation took " << total_duration.count() << " milliseconds." << std::endl;
+
+          ++msg_count;
+
     }
 
     // Main loop
@@ -208,6 +245,9 @@ private:
     // ZeroMQ context and publisher
     std::unique_ptr<zmq::context_t> m_ctx;
     std::unique_ptr<zmq::socket_t> m_publisher;
+    std::vector<uint8_t> m_protobuf_data;
+    Frame m_protoframe{};
+
 
     int msg_count = 0;
 };
