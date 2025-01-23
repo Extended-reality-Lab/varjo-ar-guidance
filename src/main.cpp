@@ -153,7 +153,7 @@ public:
         //m_intrinsics.set_distortioncoefficients
 
         for(int i = 0; i < sizeof(frame.metadata.intrinsics.distortionCoefficients); i++){
-            m_intrinsics.add_distortioncoefficients(frame.metadata.extrinsics.value[i]);
+            m_intrinsics.add_distortioncoefficients(frame.metadata.intrinsics.distortionCoefficients[i]);
         }
 
    
