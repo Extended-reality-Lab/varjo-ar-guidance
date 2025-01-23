@@ -138,6 +138,29 @@ public:
         m_protoframe.set_width(frame.metadata.bufferMetadata.height);
         std::string_view str_frame((const char*)frame.data.data(), frame.data.size());
         m_protoframe.set_pixels(str_frame);
+        //std::string_view str_extrinsics((const char*)frame.metadata.extrinsics.value, sizeof(frame.metadata.extrinsics.value)-1);
+        //m_protoframe.set_extrinsics(str_extrinsics);
+        for(int i = 0; i < sizeof(frame.metadata.extrinsics.value); i++){
+            m_protoframe.add_extrinsics(frame.metadata.extrinsics.value[i]);
+        }
+
+
+        m_intrinsics.set_principalpointx(frame.metadata.intrinsics.principalPointX);
+        m_intrinsics.set_principalpointy(frame.metadata.intrinsics.principalPointY);
+        m_intrinsics.set_focallengthx(frame.metadata.intrinsics.focalLengthX);
+        m_intrinsics.set_focallengthy(frame.metadata.intrinsics.focalLengthY);
+
+        //m_intrinsics.set_distortioncoefficients
+
+        for(int i = 0; i < sizeof(frame.metadata.intrinsics.distortionCoefficients); i++){
+            m_intrinsics.add_distortioncoefficients(frame.metadata.extrinsics.value[i]);
+        }
+
+   
+
+        *m_protoframe.mutable_intrinsics() = m_intrinsics;
+
+        
 
 
         if (!m_protoframe.IsInitialized()) {
@@ -246,7 +269,10 @@ private:
     std::unique_ptr<zmq::context_t> m_ctx;
     std::unique_ptr<zmq::socket_t> m_publisher;
     std::vector<uint8_t> m_protobuf_data;
+    std::vector<double> m_protobuf_intrinsics;
+    std::vector<double> m_protobuf_extrinsics;
     Frame m_protoframe{};
+    Intrinsics m_intrinsics{};
 
 
     int msg_count = 0;

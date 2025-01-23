@@ -24,13 +24,15 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11proto/frame.proto\"6\n\x05\x46rame\x12\r\n\x05width\x18\x01 \x01(\x05\x12\x0e\n\x06height\x18\x02 \x01(\x05\x12\x0e\n\x06pixels\x18\x03 \x01(\x0c\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11proto/frame.proto\"\x8a\x01\n\nIntrinsics\x12\x17\n\x0fprincipalPointX\x18\x01 \x01(\x01\x12\x17\n\x0fprincipalPointY\x18\x02 \x01(\x01\x12\x14\n\x0c\x66ocalLengthX\x18\x03 \x01(\x01\x12\x14\n\x0c\x66ocalLengthY\x18\x04 \x01(\x01\x12\x1e\n\x16\x64istortionCoefficients\x18\x05 \x03(\x01\"k\n\x05\x46rame\x12\r\n\x05width\x18\x01 \x01(\x05\x12\x0e\n\x06height\x18\x02 \x01(\x05\x12\x0e\n\x06pixels\x18\x03 \x01(\x0c\x12\x12\n\nextrinsics\x18\x04 \x03(\x01\x12\x1f\n\nintrinsics\x18\x05 \x01(\x0b\x32\x0b.Intrinsicsb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'proto.frame_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_FRAME']._serialized_start=21
-  _globals['_FRAME']._serialized_end=75
+  _globals['_INTRINSICS']._serialized_start=22
+  _globals['_INTRINSICS']._serialized_end=160
+  _globals['_FRAME']._serialized_start=162
+  _globals['_FRAME']._serialized_end=269
 # @@protoc_insertion_point(module_scope)

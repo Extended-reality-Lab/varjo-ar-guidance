@@ -31,6 +31,8 @@ def receive_message():
             frame = frame_pb2.Frame()
             frame.ParseFromString(message)
 
+            if len(frame.intrinsics.distortionCoefficients) == 0:
+                print("it's empty")
 
 
             img_data = np.frombuffer(frame.pixels, dtype=np.uint8)
