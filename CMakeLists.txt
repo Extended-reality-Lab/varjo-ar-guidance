@@ -25,9 +25,9 @@ set(CMAKE_CXX_FLAGS_INIT "/WX (TreatWarningsAsLinkerErrors=false)")
 # Add library: Varjo
 add_library(VarjoLib SHARED IMPORTED GLOBAL)
 set_target_properties(VarjoLib PROPERTIES
-    INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include"
-    IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/bin/VarjoLib.dll"
-    IMPORTED_IMPLIB "${CMAKE_CURRENT_SOURCE_DIR}/lib/VarjoLib.lib"
+    INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/vendor/Varjo/include"
+    IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/vendor/Varjo/bin/VarjoLib.dll"
+    IMPORTED_IMPLIB "${CMAKE_CURRENT_SOURCE_DIR}/vendor/Varjo/lib/VarjoLib.lib"
 )
 
 # Add library: OpenVR
@@ -133,7 +133,7 @@ foreach(OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES})
 endforeach(OUTPUTCONFIG CMAKE_CONFIGURATION_TYPES)
 
 set(_src_dir ${CMAKE_CURRENT_SOURCE_DIR}/src)
-set(_src_common_dir ${CMAKE_CURRENT_SOURCE_DIR}/Common)
+set(_src_common_dir ${CMAKE_CURRENT_SOURCE_DIR}/vendor/Varjo/Common)
 
 set(_sources_app
     ${_src_dir}/main.cpp
@@ -213,7 +213,7 @@ if(NOT "${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
         TARGET copyLibs
         POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/bin
-        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/bin/VarjoLib.dll ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/vendor/Varjo/bin/VarjoLib.dll ${CMAKE_BINARY_DIR}/bin/
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/vendor/OpenVR/bin/${_arch}/$<$<CONFIG:Debug>:Debug>$<$<CONFIG:Release>:Release>$<$<CONFIG:RelWithDebInfo>:RelWithDebInfo>/openvr_api.dll  ${CMAKE_BINARY_DIR}/bin/
         COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_world4100$<$<CONFIG:Debug>:d>$<$<CONFIG:Release>:>$<$<CONFIG:RelWithDebInfo>:d>.dll  ${CMAKE_BINARY_DIR}/bin/
     )

@@ -20,7 +20,6 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
-#include "../include_experimental/Varjo_mr_experimental.h" // For Meshing
 
 #include <opencv2/core/core.hpp> // blur img
 #include "opencv2/imgproc/imgproc.hpp"
@@ -30,14 +29,11 @@
 #include <opencv2/core/core_c.h>
 #include <opencv2/core/types_c.h> // cvPoint2D64f datatype for calculating q matrix
 
-// VarjoExamples namespace contains simple example wrappers for using Varjo API features.
-// These are only meant to be used in SDK example applications. In your own application,
-// use your own production quality integration layer.
 using namespace VarjoExamples;
 using namespace std;
 using namespace cv;
 
-// globals tracking the contents of both headset eyes. Necessary or they'll reset every frame
+// globals tracking the contents of both headset eyes to prevent them resetting data before we can read it
 Mat leftEyeImage, rightEyeImage, GrayL, GrayR;
 cv::Mat disMap;
 cv::Mat kL, dL, xiL; // left cam intrinsics
@@ -562,12 +558,13 @@ void AppLogic::update()
                 
                 int numChannels = rgba_mat.channels();
 
-                int numDisparity = 4;
+                // The comments for the following are what you need to do if you remove the trackbars from the image:
+                int numDisparity = 3; // multiply by 16
                 int blockSize = 5;
-                int min_disp = 0;
-                int p1 = 2;
-                int p2 = 20;
-                int disp12MaxDiff = 30;
+                int min_disp = 21; // set negative
+                int p1 = 9; // multiply by the following: numChannels * blockSize * blockSize
+                int p2 = 44; // multiply by the following: numChannels * blockSize * blockSize
+                int disp12MaxDiff = 21;
                 int uniquenessRatio = 0;
                 int speckleWindowSize = 50;
                 int speckleRange = 2;
