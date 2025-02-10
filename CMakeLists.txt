@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(VarjoImg)
-set (CMAKE_CXX_STANDARD 17)
+set (CMAKE_CXX_STANDARD 20)
 
 # "Detect" platform to set correct imported locations
 if(DEFINED ENV{Platform})
@@ -20,7 +20,8 @@ if (POLICY CMP0111)
   cmake_policy(SET CMP0111 OLD)
 endif()
 
-set(CMAKE_CXX_FLAGS_INIT "/WX (TreatWarningsAsLinkerErrors=false)")
+# set(CMAKE_CXX_FLAGS_INIT "/WX (TreatWarningsAsLinkerErrors=false) /Zc:strictStrings-")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zc:strictStrings-")
 
 # Add library: Varjo
 add_library(VarjoLib SHARED IMPORTED GLOBAL)
@@ -42,6 +43,25 @@ set_target_properties(OpenVR PROPERTIES
     IMPORTED_IMPLIB_RELWITHDEBINFO "${CMAKE_CURRENT_SOURCE_DIR}/vendor/OpenVR/lib/${_arch}/RelWithDebInfo/openvr_api.lib"
 )
 add_library(OpenVR::OpenVR ALIAS OpenVR)
+# Add library: abseil
+set(protobuf_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor/protobuf")
+set(libzmq_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor/libzmq")
+set(cppzmq_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor/cppzmq")
+
+find_package(absl HINTS "${protobuf_DIR}/lib/cmake/absl" REQUIRED)
+find_package(utf8_range HINTS "${protobuf_DIR}/lib/cmake/utf8_range" REQUIRED)
+find_package(protobuf HINTS "${protobuf_DIR}/lib/cmake/protobuf" REQUIRED)
+
+
+add_library(libzmq SHARED IMPORTED GLOBAL)
+set_target_properties(libzmq PROPERTIES
+  IMPORTED_LOCATION_RELEASE "${libzmq_DIR}/bin/Release/libzmq-v143-mt-4_3_6.dll"
+  IMPORTED_LOCATION_DEBUG "${libzmq_DIR}/bin/Debug/libzmq-v143-mt-gd-4_3_6.dll"
+  IMPORTED_IMPLIB_RELEASE "${libzmq_DIR}/lib/Release/libzmq-v143-mt-4_3_6.lib"
+  IMPORTED_IMPLIB_DEBUG "${libzmq_DIR}/lib/Debug/libzmq-v143-mt-gd-4_3_6.lib"   
+)
+set(cppzmq_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor/cppzmq/include/Release")
+
 
 # Add library: OpenCV
 set(OpenCV_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor/OpenCV/")
@@ -125,6 +145,7 @@ target_include_directories(D3DX12 INTERFACE
 )
 add_library(D3DX12::D3DX12 ALIAS D3DX12)
 
+
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set(_build_output_dir ${CMAKE_BINARY_DIR}/bin)
 foreach(OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES})
@@ -134,6 +155,7 @@ endforeach(OUTPUTCONFIG CMAKE_CONFIGURATION_TYPES)
 
 set(_src_dir ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(_src_common_dir ${CMAKE_CURRENT_SOURCE_DIR}/vendor/Varjo/Common)
+set(_src_object_dir ${CMAKE_CURRENT_SOURCE_DIR}/objects)
 
 set(_sources_app
     ${_src_dir}/main.cpp
@@ -146,6 +168,10 @@ set(_sources_app
     ${_src_dir}/MRScene.cpp
     ${_src_dir}/precomp.hpp
     ${_src_dir}/omnidir.cpp
+    ${_src_dir}/ZmqSender.hpp
+    ${_src_dir}/ZmqSender.cpp
+    ${_src_dir}/ProtobufFrameSerializer.hpp
+    ${_src_dir}/ProtobufFrameSerializer.cpp
 )
 
 set(_sources_common
@@ -178,6 +204,7 @@ set(_sources_common
     ${_src_common_dir}/Undistorter.cpp
 )
 
+
 source_group("Common" FILES ${_sources_common})
 
 set(_target MRExample)
@@ -190,35 +217,48 @@ set_target_properties(${_target} PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMA
 
 target_compile_definitions(${_target} PUBLIC -D_UNICODE -DUNICODE -DNOMINMAX ${VarjoLibDefinitions})
 
-target_link_libraries(${_target} PRIVATE 
-    ImGui::ImGui
-    ImGui::ImGuiBackends
-    FreeType::FreeType
-    GLM
-    CxxOpts
-    VarjoLib
-    d3d11
-    dxgi
-    d3dcompiler
-    windowscodecs
-    OpenCV
+
+set(PROTO_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
+
+add_library(proto-cpp OBJECT "${CMAKE_CURRENT_LIST_DIR}/proto/frame.proto")
+
+target_link_libraries(proto-cpp PUBLIC protobuf::libprotobuf)
+
+target_include_directories(proto-cpp PUBLIC "$<BUILD_INTERFACE:${PROTO_BINARY_DIR}>")
+
+protobuf_generate(
+    TARGET proto-cpp
+    IMPORT_DIRS "${CMAKE_CURRENT_LIST_DIR}/proto"
+    PROTOC_OUT_DIR "${PROTO_BINARY_DIR}"
 )
 
 
-# If we are building to another directory, copy dll files from bin
-if(NOT "${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
-    message("Copying DLL files from ${CMAKE_SOURCE_DIR} to ${CMAKE_BINARY_DIR}")
-    add_custom_target(copyLibs ALL)
-    add_custom_command(
-        TARGET copyLibs
-        POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/bin
-        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/vendor/Varjo/bin/VarjoLib.dll ${CMAKE_BINARY_DIR}/bin/
-        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/vendor/OpenVR/bin/${_arch}/$<$<CONFIG:Debug>:Debug>$<$<CONFIG:Release>:Release>$<$<CONFIG:RelWithDebInfo>:RelWithDebInfo>/openvr_api.dll  ${CMAKE_BINARY_DIR}/bin/
-        COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_world4100$<$<CONFIG:Debug>:d>$<$<CONFIG:Release>:>$<$<CONFIG:RelWithDebInfo>:d>.dll  ${CMAKE_BINARY_DIR}/bin/
-    )
+set(CPPZMQ_BUILD_TESTS OFF)
+set(BUILD_TESTS OFF)
+target_include_directories(${_target} PRIVATE "${cppzmq_INCLUDE_DIR}")
 
-    # Add libs to public SDK examples
-    add_dependencies(${_target} copyLibs)
+target_link_libraries(${_target}  
+    PRIVATE ImGui::ImGui
+    PRIVATE ImGui::ImGuiBackends
+    PRIVATE FreeType::FreeType
+    PRIVATE GLM
+    PRIVATE CxxOpts
+    PRIVATE VarjoLib
+    PRIVATE d3d11
+    PRIVATE dxgi
+    PRIVATE d3dcompiler
+    PRIVATE windowscodecs
+    PRIVATE OpenCV
+    PRIVATE libzmq
+    proto-cpp
+)
 
-endif()
+
+add_custom_command(
+    TARGET ${_target}
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/bin
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/vendor/Varjo/bin/VarjoLib.dll ${CMAKE_BINARY_DIR}/bin/
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/vendor/OpenVR/bin/${_arch}/$<$<CONFIG:Debug>:Debug>$<$<CONFIG:Release>:Release>$<$<CONFIG:RelWithDebInfo>:RelWithDebInfo>/openvr_api.dll  ${CMAKE_BINARY_DIR}/bin/
+    COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_world4100$<$<CONFIG:Debug>:d>$<$<CONFIG:Release>:>$<$<CONFIG:RelWithDebInfo>:d>.dll  ${CMAKE_BINARY_DIR}/bin/
+) 
