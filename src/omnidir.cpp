@@ -56,7 +56,15 @@
  *     Calibration Toolbox Using A Feature Descriptor-Based Calibration
  *     Pattern", in IROS 2013.
  */
-#include "precomp.hpp"
+
+// Was precomp in the base omnidir package
+#include <opencv2/core.hpp>
+#include <opencv2/calib3d.hpp>
+#include <opencv2/features2d.hpp>
+#include "opencv2/imgproc.hpp"
+#include "opencv2/highgui.hpp"
+#include <vector>
+
 #include "opencv2/ccalib/omnidir.hpp"
 #include <fstream>
 #include <iostream>

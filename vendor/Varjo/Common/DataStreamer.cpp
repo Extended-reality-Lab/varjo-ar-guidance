@@ -12,7 +12,6 @@
 
 #include <DirectXPackedVector.h>
 #include <glm/gtc/type_ptr.hpp>
-#include "Undistorter.hpp"
 
 namespace VarjoExamples
 {
@@ -131,7 +130,7 @@ void saveBMP(const std::string& filename, const varjo_BufferMetadata& buffer, co
 
     DataStreamer::convertToR8G8B8A(buffer, bufferData, output.data());
 
-    //LOG_INFO("An image has been outputted to computer and saved");
+    LOG_INFO("An image has been outputted to computer and saved");
 
 
 
@@ -158,7 +157,7 @@ DataStreamer::~DataStreamer()
 
     // If we have streams running, stop them
     for (const auto& [streamId, stream] : m_streamManagement.streams) {
-        LOG_WARNING("Stopping running data stream: %d", static_cast<int>(streamId));
+        //LOG_WARNING("Stopping running data stream: %d", static_cast<int>(streamId));
         varjo_StopDataStream(m_session, streamId);
     }
 
@@ -538,34 +537,15 @@ void DataStreamer::onDataStreamFrame(const varjo_StreamFrame* frame, varjo_Sessi
             bufferFilenames = {"rgbLeft", "rgbRight"};
             break;
 
-        case varjo_StreamType_EnvironmentCubemap:
-            LOG_DEBUG("Got frame #%lld: id=%lld, type=%lld, time=%.3f", frame->frameNumber, frame->id, frame->type,
-                1E-9 * frame->metadata.environmentCubemap.timestamp);
-
-            if (!(frame->channels & varjo_ChannelFlag_First)) {
-                LOG_WARNING("    (missing first buffer)");
-                return;
-            }
-
-            timestamp = frame->metadata.environmentCubemap.timestamp;
-
-            // Use a distinct name for the file in case auto adaptation was enabled.
-            if (frame->metadata.environmentCubemap.mode == varjo_EnvironmentCubemapMode_AutoAdapt) {
-                bufferFilenames = {"cube_adapted"};
-            } else {
-                bufferFilenames = {"cube"};
-            }
-            break;
-
         case varjo_StreamType_EyeCamera:
-            LOG_DEBUG("Got frame #%lld: id=%lld, type=%lld, time=%.3f, glint LEDs=(%x, %x)", frame->frameNumber, frame->id, frame->type,
-                1E-9 * frame->metadata.eyeCamera.timestamp, frame->metadata.eyeCamera.glintMaskLeft, frame->metadata.eyeCamera.glintMaskRight);
+            //LOG_DEBUG("Got frame #%lld: id=%lld, type=%lld, time=%.3f, glint LEDs=(%x, %x)", frame->frameNumber, frame->id, frame->type,
+                //1E-9 * frame->metadata.eyeCamera.timestamp, frame->metadata.eyeCamera.glintMaskLeft, frame->metadata.eyeCamera.glintMaskRight);
             timestamp = frame->metadata.eyeCamera.timestamp;
             bufferFilenames = {"eyeLeft", "eyeRight"};
             break;
 
         default: {
-            CRITICAL("Unsupported stream type: %lld", frame->type);
+            //CRITICAL("Unsupported stream type: %lld", frame->type);
             return;
         };
     }
@@ -588,7 +568,7 @@ void DataStreamer::onDataStreamFrame(const varjo_StreamFrame* frame, varjo_Sessi
             continue;
         }
 
-        LOG_DEBUG("  Channel index: #%lld", channelIndex);
+        //LOG_DEBUG("  Channel index: #%lld", channelIndex);
 
         varjo_Matrix extrinsics{};
         if (frame->dataFlags & varjo_DataFlag_Extrinsics) {
@@ -609,7 +589,7 @@ void DataStreamer::onDataStreamFrame(const varjo_StreamFrame* frame, varjo_Sessi
         }
 
         if (bufferId == varjo_InvalidId) {
-            LOG_WARNING("    (no buffer)");
+            //LOG_WARNING("    (no buffer)");
             continue;
         }
 
@@ -675,7 +655,7 @@ void DataStreamer::requestSnapshot(varjo_StreamType streamType, varjo_TextureFor
     if (it != m_streamManagement.streams.end()) {
         it->second.snapshotRequested = true;
     } else {
-        LOG_WARNING("Failed to request snap shot. Not running stream: type=%lld, format=%lld", streamType, streamFormat);
+        //LOG_WARNING("Failed to request snap shot. Not running stream: type=%lld, format=%lld", streamType, streamFormat);
     }
 }
 
@@ -768,61 +748,9 @@ bool DataStreamer::convertToR8G8B8A(const varjo_BufferMetadata& buffer, const vo
         } break;
 
         default: {
-            CRITICAL("Unsupported pixel format: %d", static_cast<int>(buffer.format));
+            //CRITICAL("Unsupported pixel format: %d", static_cast<int>(buffer.format));
             return false;
         };
-    }
-
-    return true;
-}
-
-bool DataStreamer::convertDistortedYUVToRectifiedRGBA(const varjo_BufferMetadata& buffer, const uint8_t* input, const glm::ivec2& outputSize, uint8_t* output,
-    const varjo_Matrix& extrinsics, const varjo_CameraIntrinsics& intrinsics, std::optional<const varjo_Matrix> projection)
-{
-    if (!(buffer.format == varjo_TextureFormat_NV12)) {
-        CRITICAL("Unsupported pixel format: %d", static_cast<int>(buffer.format));
-        return false;
-    }
-
-    const int bufferRowStride = buffer.rowStride;
-    const int chromaResDivider = (buffer.format == varjo_TextureFormat_NV12) ? 2 : 1;
-
-    const glm::ivec2 inputSize(buffer.width, buffer.height);
-    const Undistorter undistorter(inputSize, outputSize, intrinsics, extrinsics, projection);
-
-    // Calculate start address of Y- and UV-planes.
-    const uint32_t uvOffs = (bufferRowStride * inputSize.y);
-    const uint8_t* yStart = input;
-    const uint8_t* uvStart = input + uvOffs;
-
-    // Output pointer
-    uint8_t* outPtr = output;
-    size_t outOffs = 0;
-    for (int y = 0; y < outputSize.y; ++y) {
-        for (int x = 0; x < outputSize.x; ++x) {
-            // Init to black which will be written in case the sample coordinate is invalid.
-            uint8_t R = 0;
-            uint8_t G = 0;
-            uint8_t B = 0;
-
-            // If the sample coord falls in within the buffer, sample from Y and UV planes and convert to RGB.
-            const glm::ivec2 sampleCoord = undistorter.getSampleCoord(x, y);
-            if (sampleCoord.x >= 0 && sampleCoord.x < inputSize.x && sampleCoord.y >= 0 && sampleCoord.y < inputSize.y) {
-                const int uvX = sampleCoord.x - (sampleCoord.x & 1);
-
-                int Y = yStart[sampleCoord.y * bufferRowStride + sampleCoord.x];
-                int U = uvStart[sampleCoord.y / chromaResDivider * bufferRowStride + uvX + 0];
-                int V = uvStart[sampleCoord.y / chromaResDivider * bufferRowStride + uvX + 1];
-
-                convertYUVtoRGB(Y, U, V, R, G, B);
-            }
-
-            // Write out RGBA.
-            outPtr[outOffs++] = R;
-            outPtr[outOffs++] = G;
-            outPtr[outOffs++] = B;
-            outPtr[outOffs++] = 255;
-        }
     }
 
     return true;

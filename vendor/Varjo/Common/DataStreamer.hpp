@@ -92,10 +92,6 @@ public:
     //! Helper function for converting input buffer to R8G8B8A8 color format
     static bool convertToR8G8B8A(const varjo_BufferMetadata& buffer, const void* input, void* output, size_t outputRowStride = 0);
 
-    //! Helper function for converting distorted YUV input buffer to rectified RGBA output buffer
-    static bool convertDistortedYUVToRectifiedRGBA(const varjo_BufferMetadata& buffer, const uint8_t* input, const glm::ivec2& outputSize, uint8_t* output,
-        const varjo_Matrix& extrinsics, const varjo_CameraIntrinsics& intrinsics, std::optional<const varjo_Matrix> projection);
-
 private:
     //! Static data stream frame callback function
     static void dataStreamFrameCallback(const varjo_StreamFrame* frame, varjo_Session* session, void* userData);

@@ -1,0 +1,46 @@
+%YAML:1.0
+M1: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ 0.431721, 0., 0.502108, 0.,
+       0.431721, 0.509123, 0., 0., 1. ]
+D1: !!opencv-matrix
+   rows: 1
+   cols: 4
+   dt: d
+   data: [  -0.152559, 0.024209,
+       -0.000175, -0.000107 ]
+SKEW1: !!opencv-matrix
+   rows: 1
+   cols: 1
+   dt: d
+   data: [  0. ]
+XI1: !!opencv-matrix
+   rows: 1
+   cols: 1
+   dt: d
+   data: [  0.085909 ]
+M2: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ 0.423736, 0., 0.503964, 0.,
+       0.423736, 0.507224, 0., 0., 1. ]
+D2: !!opencv-matrix
+   rows: 1
+   cols: 4
+   dt: d
+   data: [ -0.152976, 0.023694,
+       -0.000302, -0.000316]
+SKEW2: !!opencv-matrix
+   rows: 1
+   cols: 1
+   dt: d
+   data: [  0. ]
+XI2: !!opencv-matrix
+   rows: 1
+   cols: 1
+   dt: d
+   data: [  0.068839 ]
+

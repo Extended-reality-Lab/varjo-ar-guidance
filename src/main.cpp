@@ -9,32 +9,18 @@
 // Internal includes
 #include "Globals.hpp"
 #include "AppLogic.hpp"
-#include "AppView.hpp"
 
 // Common main function called from the entry point
 void commonMain()
 {
     // Instantiate application logic and view
     auto appLogic = std::make_unique<AppLogic>();
-    auto appView = std::make_unique<AppView>(*appLogic);
+    appLogic->init();
 
-    try {
-        // Init application
-        LOG_DEBUG("Initializing application..");
-        if (appView->init()) {
-            // Enter the main loop
-            LOG_DEBUG("Running application..");
-            appView->run();
-        } else {
-            LOG_ERROR("Initializing application failed.");
-        }
-    } catch (const std::runtime_error& e) {
-        LOG_ERROR("Critical error caught: %s", e.what());
-    }
+    while(1){
+        appLogic->update();
+    };
 
-    // Deinitialize client app
-    LOG_DEBUG("Deinitializing application..");
-    appView.reset();
     appLogic.reset();
 
     // Exit successfully
