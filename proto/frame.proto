@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+message Intrinsics{
+  double principalPointX = 1;
+  double principalPointY = 2;
+  double focalLengthX = 3;
+  double focalLengthY = 4;
+  repeated double distortionCoefficients = 5;
+}
+
+message Frame {
+  int32 width = 1;
+  int32 height = 2;
+  bytes pixels = 3;
+  bytes depthpixels = 4;
+  repeated double extrinsics_matrix = 5;
+  Intrinsics intrinsics = 6;
+}
+
