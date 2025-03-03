@@ -35,12 +35,86 @@ set(OpenCV_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor/OpenCV/")
 add_library(OpenCV SHARED IMPORTED GLOBAL)
 set_target_properties(OpenCV PROPERTIES
     INTERFACE_INCLUDE_DIRECTORIES "${OpenCV_DIR}/include"
-    IMPORTED_LOCATION_RELEASE "${OpenCV_DIR}/bin/opencv_world4100.dll"
-    IMPORTED_LOCATION_RELWITHDEBINFO "${OpenCV_DIR}/bin/opencv_world4100.dll"
-    IMPORTED_LOCATION_DEBUG "${OpenCV_DIR}/bin/opencv_world4100d.dll"
-    IMPORTED_IMPLIB_RELEASE "${OpenCV_DIR}/lib/opencv_world4100.lib"
-    IMPORTED_IMPLIB_RELWITHDEBINFO "${OpenCV_DIR}/lib/opencv_world4100.lib"
-    IMPORTED_IMPLIB_DEBUG "${OpenCV_DIR}/lib/opencv_world4100d.lib"
+    IMPORTED_LOCATION_RELEASE "${OpenCV_DIR}/bin/opencv_core4100.dll"
+
+    IMPORTED_IMPLIB_RELEASE "${OpenCV_DIR}/lib/opencv_core4100.lib"
+)
+
+add_library(OpenCVDisplay SHARED IMPORTED GLOBAL)
+set_target_properties(OpenCVDisplay PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${OpenCV_DIR}/include"
+    IMPORTED_LOCATION_RELEASE "${OpenCV_DIR}/bin/opencv_highgui4100.dll"
+    IMPORTED_IMPLIB_RELEASE "${OpenCV_DIR}/lib/opencv_highgui4100.lib"
+)
+
+add_library(OpenCVImgProc SHARED IMPORTED GLOBAL)
+set_target_properties(OpenCVImgProc PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${OpenCV_DIR}/include"
+    IMPORTED_LOCATION_RELEASE "${OpenCV_DIR}/bin/opencv_imgproc4100.dll"
+    IMPORTED_IMPLIB_RELEASE "${OpenCV_DIR}/lib/opencv_imgproc4100.lib"
+)
+
+add_library(OpenCVCalib3D SHARED IMPORTED GLOBAL)
+set_target_properties(OpenCVCalib3D PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${OpenCV_DIR}/include"
+    IMPORTED_LOCATION_RELEASE "${OpenCV_DIR}/bin/opencv_calib3d4100.dll"
+    IMPORTED_IMPLIB_RELEASE "${OpenCV_DIR}/lib/opencv_calib3d4100.lib"
+)
+
+add_library(OpenCVOmnidir SHARED IMPORTED GLOBAL)
+set_target_properties(OpenCVOmnidir PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${OpenCV_DIR}/include"
+    IMPORTED_LOCATION_RELEASE "${OpenCV_DIR}/bin/opencv_ccalib4100.dll"
+    IMPORTED_IMPLIB_RELEASE "${OpenCV_DIR}/lib/opencv_ccalib4100.lib"
+)
+
+add_library(OpenCVVideoIO SHARED IMPORTED GLOBAL)
+set_target_properties(OpenCVVideoIO PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${OpenCV_DIR}/include"
+    IMPORTED_LOCATION_RELEASE "${OpenCV_DIR}/bin/opencv_videoio4100.dll"
+    IMPORTED_IMPLIB_RELEASE "${OpenCV_DIR}/lib/opencv_videoio4100.lib"
+)
+
+add_library(OpenCVFlann SHARED IMPORTED GLOBAL)
+set_target_properties(OpenCVFlann PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${OpenCV_DIR}/include"
+    IMPORTED_LOCATION_RELEASE "${OpenCV_DIR}/bin/opencv_flann4100.dll"
+    IMPORTED_IMPLIB_RELEASE "${OpenCV_DIR}/lib/opencv_flann4100.lib"
+)
+
+add_library(OpenCVFeatures2D SHARED IMPORTED GLOBAL)
+set_target_properties(OpenCVFeatures2D PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${OpenCV_DIR}/include"
+    IMPORTED_LOCATION_RELEASE "${OpenCV_DIR}/bin/opencv_features2d4100.dll"
+    IMPORTED_IMPLIB_RELEASE "${OpenCV_DIR}/lib/opencv_features2d4100.lib"
+)
+
+add_library(OpenCVImgCodecs SHARED IMPORTED GLOBAL)
+set_target_properties(OpenCVImgCodecs PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${OpenCV_DIR}/include"
+    IMPORTED_LOCATION_RELEASE "${OpenCV_DIR}/bin/opencv_imgcodecs4100.dll"
+    IMPORTED_IMPLIB_RELEASE "${OpenCV_DIR}/lib/opencv_imgcodecs4100.lib"
+)
+
+add_library(OpenCVFiltering SHARED IMPORTED GLOBAL)
+set_target_properties(OpenCVFiltering PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${OpenCV_DIR}/include"
+    IMPORTED_LOCATION_RELEASE "${OpenCV_DIR}/bin/opencv_ximgproc4100.dll"
+    IMPORTED_IMPLIB_RELEASE "${OpenCV_DIR}/lib/opencv_ximgproc4100.lib"
+)
+
+add_library(OpenCVVideo SHARED IMPORTED GLOBAL)
+set_target_properties(OpenCVVideo PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${OpenCV_DIR}/include"
+    IMPORTED_LOCATION_RELEASE "${OpenCV_DIR}/bin/opencv_video4100.dll"
+    IMPORTED_IMPLIB_RELEASE "${OpenCV_DIR}/lib/opencv_video4100.lib"
+)
+
+add_library(OpenCVDNN SHARED IMPORTED GLOBAL)
+set_target_properties(OpenCVDNN PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${OpenCV_DIR}/include"
+    IMPORTED_LOCATION_RELEASE "${OpenCV_DIR}/bin/opencv_dnn4100.dll"
+    IMPORTED_IMPLIB_RELEASE "${OpenCV_DIR}/lib/opencv_dnn4100.lib"
 )
 
 # Add library: GLM
@@ -66,7 +140,6 @@ set(_sources_app
     ${_src_dir}/AppLogic.cpp
     ${_src_dir}/DepthManager.hpp
     ${_src_dir}/DepthManager.cpp
-    ${_src_dir}/omnidir.cpp
 )
 
 set(_sources_common
@@ -93,6 +166,17 @@ target_link_libraries(${_target} PRIVATE
     VarjoLib
     windowscodecs
     OpenCV
+    OpenCVDisplay
+    OpenCVImgProc
+    OpenCVCalib3D
+    OpenCVOmnidir
+    OpenCVVideoIO
+    OpenCVFlann
+    OpenCVFeatures2D
+    OpenCVImgCodecs
+    OpenCVFiltering
+    OpenCVVideo
+    OpenCVDNN
 )
 
 
@@ -105,7 +189,18 @@ if(NOT "${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
         POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/bin
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/vendor/Varjo/bin/VarjoLib.dll ${CMAKE_BINARY_DIR}/bin/
-        COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_world4100$<$<CONFIG:Debug>:d>$<$<CONFIG:Release>:>$<$<CONFIG:RelWithDebInfo>:d>.dll  ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_core4100.dll  ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_highgui4100.dll  ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_imgproc4100.dll  ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_calib3d4100.dll  ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_ccalib4100.dll  ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_videoio4100.dll  ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_flann4100.dll  ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_features2d4100.dll  ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_imgcodecs4100.dll  ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_ximgproc4100.dll  ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_video4100.dll  ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_dnn4100.dll  ${CMAKE_BINARY_DIR}/bin/
     )
 
     # Add libs to public SDK examples

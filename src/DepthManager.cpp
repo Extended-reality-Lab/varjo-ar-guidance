@@ -54,18 +54,19 @@ namespace VarjoExamples{
 
         cv::Mat kNew = getOptimalNewCameraMatrix(storedCalibData.M1, storedCalibData.D1, imgSize, 1, imgSize, &ROI);
 
+        stereo = cv::StereoSGBM::create(storedSGBMData.minDisp, storedSGBMData.numDisparity, storedSGBMData.blockSize, 
+            storedSGBMData.p1, storedSGBMData.p2, storedSGBMData.disp12MaxDiff, storedSGBMData.preFilterCap, 
+            storedSGBMData.uniquenessRatio, storedSGBMData.speckleWindowSize, storedSGBMData.speckleRange, false);
+
         cv::omnidir::stereoRectify(storedCalibData.R, storedCalibData.T, rL, rR);
 
         // This outputs map1L, map2L, map1R, map2R. All necessary for remap()
         cv::omnidir::initUndistortRectifyMap(storedCalibData.M1, storedCalibData.D1, storedCalibData.XI1, rL, kNew, imgSize, CV_32FC1, map1L, map2L, cv::omnidir::RECTIFY_PERSPECTIVE);
         cv::omnidir::initUndistortRectifyMap(storedCalibData.M2, storedCalibData.D2, storedCalibData.XI2, rR, kNew, imgSize, CV_32FC1, map1R, map2R, cv::omnidir::RECTIFY_PERSPECTIVE);
+        cout << "stereorectification complete" << kNew << endl;
     }
 
     void DepthManager::getDepthMap(Mat leftEyeImg, Mat rightEyeImg){
-        cv::Ptr<cv::StereoSGBM> stereo = cv::StereoSGBM::create(storedSGBMData.minDisp, storedSGBMData.numDisparity, storedSGBMData.blockSize, 
-                                                                storedSGBMData.p1, storedSGBMData.p2, storedSGBMData.disp12MaxDiff, storedSGBMData.preFilterCap, 
-                                                                storedSGBMData.uniquenessRatio, storedSGBMData.speckleWindowSize, storedSGBMData.speckleRange, false);
-
         cv::Mat leftUndistorted, rightUndistorted;
         cv::Rect ROI;
         cv::Mat dispMap;
@@ -73,9 +74,8 @@ namespace VarjoExamples{
         cv::remap(leftEyeImg, leftUndistorted, map1L, map2L, INTER_LINEAR);
         cv::remap(rightEyeImg, rightUndistorted, map1R, map2R, INTER_LINEAR);
 
-        //TODO: Look into why this makes depth manager sad :c
-        //cv::Mat leftROI = leftUndistorted(ROI);
-        //cv::Mat rightROI = rightUndistorted(ROI);
+        cv::Mat leftROI = leftUndistorted(ROI);
+        cv::Mat rightROI = rightUndistorted(ROI);
 
         stereo->compute(leftUndistorted, rightUndistorted, dispMap);
 

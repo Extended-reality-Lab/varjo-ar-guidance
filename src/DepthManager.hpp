@@ -5,6 +5,7 @@
 #include <opencv2/opencv.hpp> // import .yaml files
 #include <opencv2/ccalib/omnidir.hpp> // Omnidirectional rectification
 #include <opencv2/calib3d/calib3d.hpp> // disparity map algorithms3
+#include <opencv2/ximgproc/disparity_filter.hpp> // filtering algorithms
 
 namespace VarjoExamples{
 using namespace std;
@@ -37,6 +38,8 @@ class DepthManager: public DataStreamer{
             int speckleRange;
             int preFilterCap;
         }; SGBMData storedSGBMData;
+
+        cv::Ptr<cv::StereoSGBM> stereo;
 
         Mat floatDisp; // For image output. Completely useless after debugging over. TODO: Delete
         cv::Mat depthMap;
