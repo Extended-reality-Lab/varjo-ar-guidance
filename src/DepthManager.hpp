@@ -5,6 +5,7 @@
 #include <opencv2/opencv.hpp> // import .yaml files
 #include <opencv2/ccalib/omnidir.hpp> // Omnidirectional rectification
 #include <opencv2/calib3d/calib3d.hpp> // disparity map algorithms3
+#include <opencv2/ximgproc/disparity_filter.hpp> // filtering algorithms
 
 namespace VarjoExamples{
 using namespace std;
@@ -25,7 +26,8 @@ class DepthManager: public DataStreamer{
             Mat Q;
         }; CalibData storedCalibData;
 
-        struct SGBMData{ // inputs for sgbm matching
+        struct DispData{ // inputs for sgbm matching
+            // SGBM formula inputs
             int numDisparity;
             int blockSize; 
             int minDisp;
@@ -36,7 +38,12 @@ class DepthManager: public DataStreamer{
             int speckleWindowSize;
             int speckleRange;
             int preFilterCap;
-        }; SGBMData storedSGBMData;
+            // WLS formula inputs
+            float lambda;
+            int sigma;
+        }; DispData storedDispData;
+
+        cv::Ptr<cv::StereoSGBM> left_matcher;
 
         Mat floatDisp; // For image output. Completely useless after debugging over. TODO: Delete
         cv::Mat depthMap;
@@ -46,7 +53,7 @@ class DepthManager: public DataStreamer{
         void getCalibDat();
         
         // pull hard-coded sgbm callibration data from yaml files
-        void getSGBMDat();
+        void getDispDat();
 
         // calculate map1L, 2L, 1R, 2R for use in remap function
         void getUndistortMapDat(float w, float h);

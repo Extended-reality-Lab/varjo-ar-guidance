@@ -4,15 +4,22 @@
 
 #include <opencv2/opencv.hpp> 
 
+#include <opencv2/ximgproc/disparity_filter.hpp> // filtering algorithms
+
 using namespace VarjoExamples;
 using namespace std;
 using namespace cv;
+using namespace cv::ximgproc;
 
 // globals tracking the contents of both headset eyes to prevent them resetting data before we can read it
-Mat leftEyeImage, rightEyeImage;
+Mat leftEyeImage, rightEyeImage, grayL, grayR;
 cv::Mat XYZ; // Depth Map
 
+cv::Mat left_for_matcher, right_for_matcher;
+
 string str_DistFromMouse = "Collecting information from mouse..."; // stores distance from mouse to objects in
+
+bool trackbarsCreated = false;
 
 //---------------------------------------------------------------------------
 
@@ -54,6 +61,11 @@ bool AppLogic::init()
     varjo_SessionSetPriority(m_session, 0);
     m_streamer->setDelayedBufferHandlingEnabled(false);
 
+    // Initialize camera intrinsice and extrinsics data for Varjo headset
+    m_streamer->getCalibDat();
+    m_streamer->getDispDat();
+    m_streamer->getUndistortMapDat(832, 640);
+
     // Data stream: YUV
     const auto streamType = varjo_StreamType_DistortedColor;
     const auto streamFormat = m_colorStreamFormat;
@@ -93,7 +105,7 @@ void AppLogic::onFrameReceived(const DataStreamer::Frame& frame)
 void onMouseCV(int action, int x, int y, int, void*)
 {
     float depth = XYZ.at<float>(y, x);
-    float depth_converted = depth * -10.56818019;
+    float depth_converted = depth * 1;//-10.56818019;
         
     if (action == cv::EVENT_LBUTTONDOWN) {
         std::cout << "Depth at (" << x << ", " << y << "): " << depth << " pixels" << std::endl;
@@ -125,7 +137,7 @@ void AppLogic::update()
     }
 
     // Get latest color frame
-    for (size_t ch = 0; ch < frameData.colorFrames.size(); ch++) {
+    for (size_t ch = 0; ch < frameData.colorFrames.size(); ch++) { // TODO: Slava doesn't want this to be a loop. Not necessary at all and probably slows things down
         if (frameData.colorFrames[ch].has_value()) {
             const auto& colorFrame = frameData.colorFrames[ch].value();
 
@@ -148,34 +160,27 @@ void AppLogic::update()
 
             Mat rgba_mat = cv::Mat(h, w, CV_8UC4, bufferRGBA.data());
 
-            // TODO: Get all 3 functioning in init
-            m_streamer->getCalibDat();
-            m_streamer->getSGBMDat();
-            m_streamer->getUndistortMapDat(w, h);
-
             if (ch==0){ // Left Eye
                 cv::cvtColor(rgba_mat, leftEyeImage, cv::COLOR_RGBA2BGR);
+                cv::cvtColor(leftEyeImage, grayL, COLOR_BGR2GRAY);
             }
             else if (ch==1){ // Right Eye
                 cv::cvtColor(rgba_mat, rightEyeImage, cv::COLOR_RGBA2BGR);
+                cv::cvtColor(rightEyeImage, grayR, COLOR_BGR2GRAY);
             }
                 
-            if (!leftEyeImage.empty() && !rightEyeImage.empty() && ch == 1){
-                // Actually called in update since we need to update it every frame
+            if (!grayL.empty() && !grayR.empty() && ch == 1){
+
+                // conditional here is probably pointless. Delete when I'm done fixing
                 m_streamer->getDepthMap(leftEyeImage, rightEyeImage);
 
-                XYZ = m_streamer->depthMap.clone(); // This is to get onmousecv to work. Lazy because it's only here for debugging. Delete this when done
-
-                // Creates and normalizes a representation of the depth display that's more readable and displayable
-                cv::Mat depthDisplay;
-                m_streamer->floatDisp.convertTo(depthDisplay, CV_8U, 255.0 / 16); // Normalize
-                cv::applyColorMap(depthDisplay, depthDisplay, cv::COLORMAP_JET); // converts disparity map to color for a more readable stream
+                XYZ = m_streamer->depthMap.clone(); // This is to get onmousecv to work and display text onto screen
 
                 // output onmouse depth details
-                cv::putText(depthDisplay, str_DistFromMouse, cv::Point(0,h-30), cv::FONT_HERSHEY_COMPLEX , 0.5, CV_RGB(0, 0, 0), 4); //text outline
-                cv::putText(depthDisplay, str_DistFromMouse, cv::Point(0,h-30), cv::FONT_HERSHEY_COMPLEX , 0.5, CV_RGB(255, 255, 255), 1); // onscreen text with depth info
+                cv::putText(XYZ, str_DistFromMouse, cv::Point(0,h-30), cv::FONT_HERSHEY_COMPLEX , 0.5, CV_RGB(0, 0, 0), 4); //text outline
+                cv::putText(XYZ, str_DistFromMouse, cv::Point(0,h-30), cv::FONT_HERSHEY_COMPLEX , 0.5, CV_RGB(255, 255, 255), 1); // onscreen text with depth info
 
-                cv::imshow(depthOut, depthDisplay);
+                cv::imshow(depthOut, XYZ);
                 cv::waitKey(1);
             }
         }

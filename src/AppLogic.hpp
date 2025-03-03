@@ -4,6 +4,8 @@
 
 #include "DepthManager.hpp"
 
+using namespace cv;
+
 //! Application logic class
 class AppLogic
 {
