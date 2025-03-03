@@ -1,10 +1,3 @@
-// Copyright 2019-2021 Varjo Technologies Oy. All rights reserved.
-
-/* Mixed Reality Example Application
- *
- * - Showcases Varjo MR API features: Camera, data streams, rendering, and more!
- * - Run example and press F1 for help
- */
 
 // Internal includes
 #include "Globals.hpp"

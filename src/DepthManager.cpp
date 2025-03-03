@@ -50,6 +50,7 @@ namespace VarjoExamples{
 
         Size imgSize(w, h);
 
+        // Scale camera matricies before use
         storedCalibData.M1.row(0) *= w;
         storedCalibData.M1.row(1) *= h;
         storedCalibData.M2.row(0) *= w;
@@ -66,7 +67,6 @@ namespace VarjoExamples{
         // This outputs map1L, map2L, map1R, map2R. All necessary for remap()
         cv::omnidir::initUndistortRectifyMap(storedCalibData.M1, storedCalibData.D1, storedCalibData.XI1, rL, kNew, imgSize, CV_32FC1, map1L, map2L, cv::omnidir::RECTIFY_PERSPECTIVE);
         cv::omnidir::initUndistortRectifyMap(storedCalibData.M2, storedCalibData.D2, storedCalibData.XI2, rR, kNew, imgSize, CV_32FC1, map1R, map2R, cv::omnidir::RECTIFY_PERSPECTIVE);
-        cout << "stereorectification complete" << kNew << endl;
         cout << "stereorectification complete" << kNew << endl;
     }
 
@@ -96,7 +96,6 @@ namespace VarjoExamples{
            cv::Mat filtered_disp;
            disparityFilter->filter(left_disp, leftUndistorted, filtered_disp, right_disp, Rect(), rightUndistorted);
 
-           /*
            // for debugging purposes while I'm fixing the disparity map
            Mat raw_disp_vis;
            getDisparityVis(left_disp,raw_disp_vis,1);
@@ -106,7 +105,6 @@ namespace VarjoExamples{
            getDisparityVis(filtered_disp,filtered_disp_vis,1);
            imshow("Filtered disparity map", filtered_disp_vis);
            waitKey(1);
-           */
 
            Mat floatDisp;
            filtered_disp.convertTo(floatDisp, CV_32F, 1.0); // normally divided by 16. This leads to poor visibility on depth map

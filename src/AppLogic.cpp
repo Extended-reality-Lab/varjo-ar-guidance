@@ -9,7 +9,7 @@ using namespace std;
 using namespace cv;
 
 // globals tracking the contents of both headset eyes to prevent them resetting data before we can read it
-Mat leftEyeImage, rightEyeImage, grayL, grayR;
+Mat leftEyeImage, rightEyeImage;
 cv::Mat depthMap; // Global depth map used for debugging display data. Recommended you pull depth from m_streamer->depth instead
 
 string str_DistFromMouse = "Collecting information from mouse..."; // stores distance from mouse to objects in
@@ -157,22 +157,12 @@ void AppLogic::update()
 
             if (ch==0){ // Left Eye
                 cv::cvtColor(rgba_mat, leftEyeImage, cv::COLOR_RGBA2BGR);
-                cv::cvtColor(leftEyeImage, grayL, COLOR_BGR2GRAY);
-                cv::cvtColor(leftEyeImage, grayL, COLOR_BGR2GRAY);
             }
             else if (ch==1){ // Right Eye
                 cv::cvtColor(rgba_mat, rightEyeImage, cv::COLOR_RGBA2BGR);
-                cv::cvtColor(rightEyeImage, grayR, COLOR_BGR2GRAY);
             }
                 
-            if (!grayL.empty() && !grayR.empty() && ch == 1){
-
-                // conditional here is probably pointless. Delete when I'm done fixing
-                m_streamer->getDepthMap(leftEyeImage, rightEyeImage);
-                cv::cvtColor(rightEyeImage, grayR, COLOR_BGR2GRAY);
-            }
-                
-            if (!grayL.empty() && !grayR.empty() && ch == 1){
+            if (!leftEyeImage.empty() && !rightEyeImage.empty() && ch == 1){
 
                 m_streamer->getDepthMap(leftEyeImage, rightEyeImage);
 
