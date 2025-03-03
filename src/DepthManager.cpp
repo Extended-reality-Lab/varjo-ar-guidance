@@ -72,6 +72,7 @@ namespace VarjoExamples{
         cv::omnidir::initUndistortRectifyMap(storedCalibData.M1, storedCalibData.D1, storedCalibData.XI1, rL, kNew, imgSize, CV_32FC1, map1L, map2L, cv::omnidir::RECTIFY_PERSPECTIVE);
         cv::omnidir::initUndistortRectifyMap(storedCalibData.M2, storedCalibData.D2, storedCalibData.XI2, rR, kNew, imgSize, CV_32FC1, map1R, map2R, cv::omnidir::RECTIFY_PERSPECTIVE);
         cout << "stereorectification complete" << kNew << endl;
+        cout << "stereorectification complete" << kNew << endl;
     }
 
     void DepthManager::getDepthMap(Mat leftEyeImg, Mat rightEyeImg){
