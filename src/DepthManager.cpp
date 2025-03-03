@@ -1,11 +1,6 @@
 #pragma once
 
 #include "DepthManager.hpp"
-#include <opencv2/opencv.hpp> 
-#include <opencv2/ximgproc/disparity_filter.hpp> // filtering algorithms
-
-using namespace cv;
-using namespace cv::ximgproc;
 
 namespace VarjoExamples{
 
@@ -101,6 +96,7 @@ namespace VarjoExamples{
            cv::Mat filtered_disp;
            disparityFilter->filter(left_disp, leftUndistorted, filtered_disp, right_disp, Rect(), rightUndistorted);
 
+           /*
            // for debugging purposes while I'm fixing the disparity map
            Mat raw_disp_vis;
            getDisparityVis(left_disp,raw_disp_vis,1);
@@ -110,6 +106,7 @@ namespace VarjoExamples{
            getDisparityVis(filtered_disp,filtered_disp_vis,1);
            imshow("Filtered disparity map", filtered_disp_vis);
            waitKey(1);
+           */
 
            Mat floatDisp;
            filtered_disp.convertTo(floatDisp, CV_32F, 1.0); // normally divided by 16. This leads to poor visibility on depth map

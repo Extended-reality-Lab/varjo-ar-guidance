@@ -10,6 +10,7 @@
 namespace VarjoExamples{
 using namespace std;
 using namespace cv;
+using namespace cv::ximgproc;
 
 class DepthManager: public DataStreamer{
     public:
