@@ -27,6 +27,8 @@ bool ProtobufFrameSerializer::serializeFrame(const VarjoExamples::DataStreamer::
 
     *m_protoframe.mutable_intrinsics() = m_intrinsics;
 
+    m_protoframe.set_ts(frame.metadata.timestamp);
+
     m_protobuf_data.resize(m_protoframe.ByteSizeLong());
 
     if (!m_protoframe.SerializeToArray(m_protobuf_data.data(), m_protobuf_data.size())) {

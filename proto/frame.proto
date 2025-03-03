@@ -15,5 +15,6 @@ message Frame {
   bytes depthpixels = 4;
   repeated double extrinsics_matrix = 5;
   Intrinsics intrinsics = 6;
+  int64 ts = 7;
 }
 

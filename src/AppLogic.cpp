@@ -140,11 +140,10 @@ void AppLogic::update()
             const auto w = colorFrame.metadata.bufferMetadata.width;
             const auto h = colorFrame.metadata.bufferMetadata.height;
             const auto rowStride = w * 4;
+            
 
             //Serialize and send color frame
             m_protoframe.serializeFrame(colorFrame);
-            
-
 
             // Convert to RGBA in full res (this conversion is pixel to pixel, no scaling allowed)
             std::vector<uint8_t> bufferRGBA(rowStride * h);
@@ -174,30 +173,26 @@ void AppLogic::update()
 
                 XYZ = m_streamer->depthMap.clone(); // This is to get onmousecv to work. Lazy because it's only here for debugging. Delete this when done
 
-
-
-               
-
-                // Creates and normalizes a representation of the depth display that's more readable and displayable
-                cv::Mat depthDisplay;
-                m_streamer->floatDisp.convertTo(depthDisplay, CV_8U, 255.0 / 16); // Normalize
-                cv::applyColorMap(depthDisplay, depthDisplay, cv::COLORMAP_JET); // converts disparity map to color for a more readable stream
-                std::cout << "Height: " << XYZ.rows << ", Width: " << XYZ.cols << std::endl;
-                int step = XYZ.step[0];
-                std::cout << "Step size (row stride) is: " << step << " bytes" << std::endl;
-
-
                 m_protoframe.addDepthMap(XYZ);
 
                 m_sender.send_message(m_protoframe.getSerializedData());
+               
 
-                // output onmouse depth details
-                cv::putText(depthDisplay, str_DistFromMouse, cv::Point(0,h-30), cv::FONT_HERSHEY_COMPLEX , 0.5, CV_RGB(0, 0, 0), 4); //text outline
-                cv::putText(depthDisplay, str_DistFromMouse, cv::Point(0,h-30), cv::FONT_HERSHEY_COMPLEX , 0.5, CV_RGB(255, 255, 255), 1); // onscreen text with depth info
+                // // Creates and normalizes a representation of the depth display that's more readable and displayable
+                // cv::Mat depthDisplay;
+                // m_streamer->floatDisp.convertTo(depthDisplay, CV_8U, 255.0 / 16); // Normalize
+                // cv::applyColorMap(depthDisplay, depthDisplay, cv::COLORMAP_JET); // converts disparity map to color for a more readable stream
 
 
-                cv::imshow(depthOut, XYZ);
-                cv::waitKey(1);
+                
+
+                // // output onmouse depth details
+                // cv::putText(depthDisplay, str_DistFromMouse, cv::Point(0,h-30), cv::FONT_HERSHEY_COMPLEX , 0.5, CV_RGB(0, 0, 0), 4); //text outline
+                // cv::putText(depthDisplay, str_DistFromMouse, cv::Point(0,h-30), cv::FONT_HERSHEY_COMPLEX , 0.5, CV_RGB(255, 255, 255), 1); // onscreen text with depth info
+
+
+                // cv::imshow(depthOut, XYZ);
+                // cv::waitKey(1);
             }
         }
     }
