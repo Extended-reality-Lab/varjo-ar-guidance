@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(VarjoImg)
-set (CMAKE_CXX_STANDARD 17)
+set (CMAKE_CXX_STANDARD 20)
 
 # "Detect" platform to set correct imported locations
 if(DEFINED ENV{Platform})
@@ -20,6 +20,9 @@ if (POLICY CMP0111)
   cmake_policy(SET CMP0111 OLD)
 endif()
 
+set(CMAKE_CXX_FLAGS_INIT "/WX (TreatWarningsAsLinkerErrors=false) /Zc:strictStrings-")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zc:strictStrings-")
+
 set(CMAKE_CXX_FLAGS_INIT "/WX (TreatWarningsAsLinkerErrors=false)")
 
 # Add library: Varjo
@@ -29,6 +32,27 @@ set_target_properties(VarjoLib PROPERTIES
     IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/vendor/Varjo/bin/VarjoLib.dll"
     IMPORTED_IMPLIB "${CMAKE_CURRENT_SOURCE_DIR}/vendor/Varjo/lib/VarjoLib.lib"
 )
+
+
+# Add library: abseil
+set(protobuf_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor/protobuf")
+set(libzmq_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor/libzmq")
+set(cppzmq_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor/cppzmq")
+
+find_package(absl HINTS "${protobuf_DIR}/lib/cmake/absl" REQUIRED)
+find_package(utf8_range HINTS "${protobuf_DIR}/lib/cmake/utf8_range" REQUIRED)
+find_package(protobuf HINTS "${protobuf_DIR}/lib/cmake/protobuf" REQUIRED)
+
+
+add_library(libzmq SHARED IMPORTED GLOBAL)
+set_target_properties(libzmq PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${libzmq_DIR}/include"
+  IMPORTED_LOCATION_RELEASE "${libzmq_DIR}/bin/Release/libzmq-v143-mt-4_3_6.dll"
+  IMPORTED_LOCATION_DEBUG "${libzmq_DIR}/bin/Debug/libzmq-v143-mt-gd-4_3_6.dll"
+  IMPORTED_IMPLIB_RELEASE "${libzmq_DIR}/lib/Release/libzmq-v143-mt-4_3_6.lib"
+  IMPORTED_IMPLIB_DEBUG "${libzmq_DIR}/lib/Debug/libzmq-v143-mt-gd-4_3_6.lib"   
+)
+
 
 # Add library: OpenCV
 set(OpenCV_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor/OpenCV/")
@@ -140,6 +164,10 @@ set(_sources_app
     ${_src_dir}/AppLogic.cpp
     ${_src_dir}/DepthManager.hpp
     ${_src_dir}/DepthManager.cpp
+    ${_src_dir}/ZmqSender.hpp
+    ${_src_dir}/ZmqSender.cpp
+    ${_src_dir}/ProtobufFrameSerializer.hpp
+    ${_src_dir}/ProtobufFrameSerializer.cpp
 )
 
 set(_sources_common
@@ -161,6 +189,24 @@ set_target_properties(${_target} PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMA
 
 target_compile_definitions(${_target} PUBLIC -D_UNICODE -DUNICODE -DNOMINMAX ${VarjoLibDefinitions})
 
+set(PROTO_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
+
+add_library(proto-cpp OBJECT "${CMAKE_CURRENT_LIST_DIR}/proto/frame.proto")
+
+target_link_libraries(proto-cpp PUBLIC protobuf::libprotobuf)
+
+target_include_directories(proto-cpp PUBLIC "$<BUILD_INTERFACE:${PROTO_BINARY_DIR}>")
+
+protobuf_generate(
+    TARGET proto-cpp
+    IMPORT_DIRS "${CMAKE_CURRENT_LIST_DIR}/proto"
+    PROTOC_OUT_DIR "${PROTO_BINARY_DIR}"
+)
+
+
+set(CPPZMQ_BUILD_TESTS OFF)
+set(BUILD_TESTS OFF)
+
 target_link_libraries(${_target} PRIVATE
     GLM
     VarjoLib
@@ -177,12 +223,15 @@ target_link_libraries(${_target} PRIVATE
     OpenCVFiltering
     OpenCVVideo
     OpenCVDNN
+    libzmq
+    proto-cpp
 )
 
 
 # If we are building to another directory, copy dll files from bin
 if(NOT "${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
     message("Copying DLL files from ${CMAKE_SOURCE_DIR} to ${CMAKE_BINARY_DIR}")
+    message("Copying DLL files from ${protobuf_DIR} to ${CMAKE_BINARY_DIR}")
     add_custom_target(copyLibs ALL)
     add_custom_command(
         TARGET copyLibs
@@ -201,7 +250,14 @@ if(NOT "${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_BINARY_DIR}")
         COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_ximgproc4100.dll  ${CMAKE_BINARY_DIR}/bin/
         COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_video4100.dll  ${CMAKE_BINARY_DIR}/bin/
         COMMAND ${CMAKE_COMMAND} -E copy ${OpenCV_DIR}/bin/opencv_dnn4100.dll  ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${libzmq_DIR}/bin/Debug/libzmq-v143-mt-gd-4_3_6.dll ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${libzmq_DIR}/bin/Release/libzmq-v143-mt-4_3_6.dll ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/vendor/protobuf/bin/libprotobuf.dll ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/vendor/protobuf/bin/abseil_dll.dll ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/vendor/protobuf/bin/utf8_range.dll ${CMAKE_BINARY_DIR}/bin/
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/vendor/protobuf/bin/utf8_validity.dll ${CMAKE_BINARY_DIR}/bin/
     )
+      
 
     # Add libs to public SDK examples
     add_dependencies(${_target} copyLibs)

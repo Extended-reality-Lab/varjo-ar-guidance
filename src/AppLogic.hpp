@@ -3,6 +3,9 @@
 #pragma once
 
 #include "DepthManager.hpp"
+#include "ProtobufFrameSerializer.hpp"
+#include "ZmqSender.hpp"
+#include "frame.pb.h"
 
 using namespace cv;
 
@@ -49,6 +52,8 @@ private:
     varjo_Session* m_session{nullptr};
 
     std::unique_ptr<VarjoExamples::DepthManager> m_streamer;  //!< Data streamer instance
+    ProtobufFrameSerializer m_protoframe;
+    ZmqSender m_sender{"tcp://localhost:5555"};
 
     struct FrameData {
         std::optional<varjo_DistortedColorFrameMetadata> metadata;                     //!< Color stream metadata

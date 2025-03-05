@@ -2,6 +2,7 @@
 
 #include "AppLogic.hpp"
 
+
 #include <opencv2/opencv.hpp> 
 
 using namespace VarjoExamples;
@@ -41,6 +42,7 @@ bool AppLogic::init()
 
     // Create data streamer instance from DepthManager child class
     m_streamer = std::make_unique<DepthManager>(m_session, std::bind(&AppLogic::onFrameReceived, this, std::placeholders::_1));
+
 
     // Check if Mixed Reality features are available.
     varjo_Bool mixedRealityAvailable = varjo_False;
@@ -129,6 +131,7 @@ void AppLogic::update()
             frameData.colorFrames[ch] = std::move(m_frameData.colorFrames[ch]);
             m_frameData.colorFrames[ch] = std::nullopt;
         }
+
     }
 
     // Get latest color frame
@@ -144,6 +147,10 @@ void AppLogic::update()
             const auto w = colorFrame.metadata.bufferMetadata.width;
             const auto h = colorFrame.metadata.bufferMetadata.height;
             const auto rowStride = w * 4;
+            
+
+            //Serialize and send color frame
+            m_protoframe.serializeFrame(colorFrame);
 
             // Convert to RGBA in full res (this conversion is pixel to pixel, no scaling allowed)
             std::vector<uint8_t> bufferRGBA(rowStride * h);
@@ -167,6 +174,9 @@ void AppLogic::update()
                 m_streamer->getDepthMap(leftEyeImage, rightEyeImage);
 
                 depthMap = m_streamer->depthMap.clone(); // This is to get onmousecv to work and display text onto screen
+                m_protoframe.addDepthMap(m_streamer->depthMap);
+
+                m_sender.send_message(m_protoframe.getSerializedData());
 
                 // output onmouse depth details
                 cv::putText(depthMap, str_DistFromMouse, cv::Point(0,h-30), cv::FONT_HERSHEY_COMPLEX , 0.5, CV_RGB(0, 0, 0), 4); //text outline
@@ -174,6 +184,26 @@ void AppLogic::update()
 
                 cv::imshow(depthOut, depthMap);
                 cv::waitKey(1);
+                //XYZ = m_streamer->depthMap.clone(); // This is to get onmousecv to work. Lazy because it's only here for debugging. Delete this when done
+
+
+               
+
+                // // Creates and normalizes a representation of the depth display that's more readable and displayable
+                // cv::Mat depthDisplay;
+                // m_streamer->floatDisp.convertTo(depthDisplay, CV_8U, 255.0 / 16); // Normalize
+                // cv::applyColorMap(depthDisplay, depthDisplay, cv::COLORMAP_JET); // converts disparity map to color for a more readable stream
+
+
+                
+
+                // // output onmouse depth details
+                // cv::putText(depthDisplay, str_DistFromMouse, cv::Point(0,h-30), cv::FONT_HERSHEY_COMPLEX , 0.5, CV_RGB(0, 0, 0), 4); //text outline
+                // cv::putText(depthDisplay, str_DistFromMouse, cv::Point(0,h-30), cv::FONT_HERSHEY_COMPLEX , 0.5, CV_RGB(255, 255, 255), 1); // onscreen text with depth info
+
+
+                // cv::imshow(depthOut, XYZ);
+                // cv::waitKey(1);
             }
 
         }
