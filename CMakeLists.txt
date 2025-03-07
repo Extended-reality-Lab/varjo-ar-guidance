@@ -67,6 +67,7 @@ set(_sources_app
     ${_src_dir}/DepthManager.hpp
     ${_src_dir}/DepthManager.cpp
     ${_src_dir}/omnidir.cpp
+    ${_src_dir}/half.cpp
 )
 
 set(_sources_common

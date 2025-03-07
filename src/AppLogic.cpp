@@ -1,8 +1,36 @@
-// Copyright 2019-2021 Varjo Technologies Oy. All rights reserved.
+// The purpose of this copy is to generate timer data into 3 arrays for time to generate a point cloud. It's not concerned with anything but tracking progress of numbers for me
 
 #include "AppLogic.hpp"
 
+#include <Varjo_mr_experimental.h> // enables point cloud construction
+
 #include <opencv2/opencv.hpp> 
+
+#include <iostream>
+#include <cstdint>
+#include <utility> // return a pair of values
+
+#include <iostream>// write to file
+#include <fstream> // write to file
+
+#include "half.h"
+#include <chrono>
+#include <ctime>
+
+#include <opencv2/highgui.hpp> // visualize point cloud
+
+CONST int TRACKERSIZE = 5;
+int arrayTracker = 0;
+
+std::chrono::time_point<std::chrono::system_clock> startLatancy, endLatancy, startgenTime, endGenTime; // Latancy = time from eyes gen to cloud gen. GenTime is total time taken to make point clouds
+
+// Track what the name says. Does it for the amount of tracker size plus 1 more space where they'll each output the average value
+int cloudDensity[TRACKERSIZE+1];
+float cloudLatancy[TRACKERSIZE+1];
+float timeToGenerate[TRACKERSIZE+1];
+
+int numEyes = 0; // counter for amount of times passthrough cams generate data before we get a point cloud
+bool isTrackingLatancy = 0;
 
 using namespace VarjoExamples;
 using namespace std;
@@ -12,9 +40,11 @@ using namespace cv;
 Mat leftEyeImage, rightEyeImage;
 cv::Mat XYZ; // Depth Map
 
-string str_DistFromMouse = "Collecting information from mouse..."; // stores distance from mouse to objects in
+varjo_PointCloudSnapshotId snapshotId;
+varjo_PointCloudDeltaContent varjoPointCloud;
+varjo_PointCloudSnapshotContent varjoCloudContent;
 
-//---------------------------------------------------------------------------
+string str_DistFromMouse = "Collecting information from mouse..."; // stores distance from mouse to objects in
 
 AppLogic::~AppLogic()
 {
@@ -47,6 +77,10 @@ bool AppLogic::init()
     if (varjo_HasProperty(m_session, varjo_PropertyKey_MRAvailable)) {
         mixedRealityAvailable = varjo_GetPropertyBool(m_session, varjo_PropertyKey_MRAvailable);
     }
+
+    // enable point cloud construction from Varjo lighter
+    varjo_MRSetReconstruction(m_session, true);
+    snapshotId = varjo_MRBeginPointCloudSnapshot(m_session); // schedules new snapshot. I only want 1 for now but eventually this'll have to be under update as well as init
 
     // Handle mixed reality availability
     m_colorStreamFormat = m_streamer->getFormat(varjo_StreamType_DistortedColor);
@@ -105,10 +139,84 @@ void onMouseCV(int action, int x, int y, int, void*)
     }
 }
 
+void unpack16bitints(varjo_PointCloudPoint* points, size_t pointCount, int w, int h, Mat leftEye, Mat rightEye) {
+
+    static size_t cntr = 0;
+    if (!leftEye.empty() && !rightEye.empty()){
+        imwrite("leftEye" + std::to_string(cntr) + ".bmp", leftEye);
+        imwrite("rightEye" + std::to_string(cntr) + ".bmp", rightEye);
+    }
+    ofstream myFile("VarjoCloudOut" + std::to_string(cntr++) + ".pcd");
+
+    // Generate point cloud header
+    myFile << "VERSION .7" << endl;
+    myFile << "FIELDS x y z" << endl;
+    myFile << "SIZE 4 4 4" << endl;
+    myFile << "TYPE F F F" << endl;
+    myFile << "COUNT 1 1 1" << endl;
+    myFile << "WIDTH " << pointCount << endl;// set by system
+    myFile << "HEIGHT " << 1 << endl; // set by system
+    myFile << "VIEWPOINT 0 0 0 1 0 0 0" << endl;
+    myFile << "POINTS " << pointCount << endl; // set by system
+    myFile << "DATA ascii" << endl;
+
+    // Generate point cloud points
+    for (size_t i = 0; i < pointCount; ++i) {
+        // Extract the two 16-bit float16 values (16 bits each)
+        uint16_t intX = (points[i].positionXY >> 16) & 0xFFFF;  // High 16 bits
+        uint16_t intY = points[i].positionXY & 0xFFFF;          // Low 16 bits
+        uint16_t intZ = (points[i].positionZradius) & 0xFFFF;
+        uint16_t intR = (points[i].normalZcolorR >> 16) & 0xFFFF;
+        uint16_t intB = (points[i].colorBG >> 16) & 0xFFFF;  // High 16 bits
+        uint16_t intG = points[i].colorBG & 0xFFFF;
+
+        
+
+        // Convert the float16 values to float
+        float floatX = FLOAT16(intX);
+        float floatY = FLOAT16(intY);
+        float floatZ = FLOAT16(intZ);
+        float floatR = FLOAT16(intR);
+        float floatB = FLOAT16(intB);
+        float floatG = FLOAT16(intG);
+        
+        //std::cout << "Point " << i << " X: " << posX << ", Y: " << posY << std::endl;
+        myFile << floatX << " " << floatY << " " << floatZ << endl;
+    }
+    
+    cout << "file written" << endl;
+    myFile.close();
+    
+}
+
+void outputArraysFloat(float inputarr[]){
+    float average = 0;
+    for (int i=0; i<TRACKERSIZE; i++){
+        cout << inputarr[i] << ", ";
+        average += inputarr[i];
+    }
+    average /= TRACKERSIZE;
+    cout << "AVERAGE OUTPUT:" << average;
+    cout << endl << endl;
+}
+
+void outputArraysInt(int inputarr[]){
+    int average = 0;
+    for (int i=0; i<TRACKERSIZE; i++){
+        cout << inputarr[i] << ", ";
+        average += inputarr[i];
+    }
+    average /= TRACKERSIZE;
+    cout << "AVERAGE OUTPUT:" << average;
+    cout << endl << endl;
+}
+
+
 void AppLogic::update()
 {
     // Handle delayed data stream buffers
     m_streamer->handleDelayedBuffers();
+    startgenTime = std::chrono::system_clock::now();
 
     // Get latest frame data
     FrameData frameData{};
@@ -151,31 +259,106 @@ void AppLogic::update()
             // TODO: Get all 3 functioning in init
             m_streamer->getCalibDat();
             m_streamer->getSGBMDat();
-            m_streamer->getUndistortMapDat(w, h);
+            //m_streamer->getUndistortMapDat(w, h);
+
+            cv::Rect ROI;
+            cv::Mat rL, rR;
+    
+            Size imgSize(w, h);
+    
+            m_streamer->storedCalibData.M1.row(0) *= w;
+            m_streamer->storedCalibData.M1.row(1) *= h;
+            m_streamer->storedCalibData.M2.row(0) *= w;
+            m_streamer->storedCalibData.M2.row(1) *= h;
+    
+            cv::Mat kNew = getOptimalNewCameraMatrix(m_streamer->storedCalibData.M1, m_streamer->storedCalibData.D1, imgSize, 1, imgSize, &ROI);
+    
+            cv::omnidir::stereoRectify(m_streamer->storedCalibData.R, m_streamer->storedCalibData.T, rL, rR);
 
             if (ch==0){ // Left Eye
                 cv::cvtColor(rgba_mat, leftEyeImage, cv::COLOR_RGBA2BGR);
+                startLatancy = std::chrono::system_clock::now();
             }
             else if (ch==1){ // Right Eye
                 cv::cvtColor(rgba_mat, rightEyeImage, cv::COLOR_RGBA2BGR);
             }
+
+            cout << "Time in nanoseconds: " << varjoCloudContent.timestamp << endl;
+            cout << varjo_MRGetPointCloudSnapshotStatus(m_session, snapshotId)  << endl;
+
+            if (varjo_MRGetPointCloudSnapshotStatus(m_session, snapshotId) == 2 ){ // if the current point cloud snapshot is ready
+                
+                endLatancy = std::chrono::system_clock::now();
+                std::chrono::duration<double> elapsed_seconds_latancy = endLatancy - startLatancy;
+                std::time_t end_time_latancy = std::chrono::system_clock::to_time_t(endLatancy);
+                std::cout << "finished computation for latancy at " << std::ctime(&end_time_latancy)
+              << "elapsed time: " << elapsed_seconds_latancy.count() << "s\n";
+
+                endGenTime = std::chrono::system_clock::now();
+                std::chrono::duration<double> elapsed_seconds = endGenTime - startgenTime;
+                std::time_t end_time = std::chrono::system_clock::to_time_t(endGenTime);
+                std::cout << "finished computation for generate point cloud time at " << std::ctime(&end_time)
+              << "elapsed time: " << elapsed_seconds.count() << "s\n";
+
+              timeToGenerate[arrayTracker] = elapsed_seconds.count();
+              cloudLatancy[arrayTracker] = elapsed_seconds_latancy.count();
+              isTrackingLatancy = 0; // reset checker for cam latancy
+
+                cout << "snapshot is ready " << varjo_MRGetPointCloudSnapshotStatus(m_session, snapshotId)  << endl; // alternative way of querying snapshot
+                
+                varjo_MRGetPointCloudSnapshotContent(m_session, snapshotId, &varjoCloudContent); // save current snapshot content to varjoCloudContent
+                cloudDensity[arrayTracker] = varjoCloudContent.pointCount;
+
+                //unpack16bitints(varjoCloudContent.points, varjoCloudContent.pointCount, w, h, leftEyeImage, rightEyeImage);
+
+                startgenTime = std::chrono::system_clock::now();
+                if (arrayTracker + 1 != TRACKERSIZE){
+                    arrayTracker++;
+
+                    varjo_MRReleasePointCloudSnapshot(m_session, snapshotId); // release now unused snapshot
+                    snapshotId = varjo_MRBeginPointCloudSnapshot(m_session); // request new snapshot
+                    cout << "New snapshot requested" << endl;
+                }
+                else{
+                    // calculate averages of outputs here
+                    cout << "time to generate a point cloud from fresh snapshot: ";
+                    outputArraysFloat(timeToGenerate);
+                    cout << "Density per cloud generated: ";
+                    outputArraysInt(cloudDensity);
+                    cout << "time to generate a point cloud the eye view: ";
+                    outputArraysFloat(cloudLatancy);
+                    exit(1);
+                }
+
+            }
+            else{
+                cout << "snapshot is not ready." << endl;
+            }
+
                 
             if (!leftEyeImage.empty() && !rightEyeImage.empty() && ch == 1){
-                // Actually called in update since we need to update it every frame
-                m_streamer->getDepthMap(leftEyeImage, rightEyeImage);
+                Mat leftU, rightU, disMap;
+                Mat img1Rec, img2Rec, pointCloud;
 
-                XYZ = m_streamer->depthMap.clone(); // This is to get onmousecv to work. Lazy because it's only here for debugging. Delete this when done
+                cv::omnidir::undistortImage(leftEyeImage, leftU, m_streamer->storedCalibData.M1, m_streamer->storedCalibData.D1, m_streamer->storedCalibData.XI1, cv::omnidir::RECTIFY_PERSPECTIVE, kNew, leftEyeImage.size(), m_streamer->storedCalibData.R);
+                cv::omnidir::undistortImage(rightEyeImage, rightU, m_streamer->storedCalibData.M2, m_streamer->storedCalibData.D2, m_streamer->storedCalibData.XI2, cv::omnidir::RECTIFY_PERSPECTIVE, kNew, rightEyeImage.size(), m_streamer->storedCalibData.R);
 
-                // Creates and normalizes a representation of the depth display that's more readable and displayable
-                cv::Mat depthDisplay;
-                m_streamer->floatDisp.convertTo(depthDisplay, CV_8U, 255.0 / 16); // Normalize
-                cv::applyColorMap(depthDisplay, depthDisplay, cv::COLORMAP_JET); // converts disparity map to color for a more readable stream
+                // This one is modded. We should compare to unmodded version they might know what they're doing
+                // My flag is also not a recommended flag. Point cloud could very well come out really ugly
+                cv::omnidir::stereoReconstructModSGBM(leftU, rightU, m_streamer->storedCalibData.M1, m_streamer->storedCalibData.D1, m_streamer->storedCalibData.XI1, m_streamer->storedCalibData.M2, m_streamer->storedCalibData.D2, m_streamer->storedCalibData.XI2, m_streamer->storedCalibData.R, m_streamer->storedCalibData.T, cv::omnidir::RECTIFY_PERSPECTIVE, 
+                m_streamer->storedSGBMData.numDisparity, 5, disMap, img1Rec, img2Rec, leftU.size(), kNew, pointCloud, 1, m_streamer->storedSGBMData.minDisp, m_streamer->storedSGBMData.p1, m_streamer->storedSGBMData.p2, m_streamer->storedSGBMData.disp12MaxDiff, m_streamer->storedSGBMData.uniquenessRatio, m_streamer->storedSGBMData.speckleWindowSize, m_streamer->storedSGBMData.speckleRange, m_streamer->storedSGBMData.preFilterCap);
 
-                // output onmouse depth details
-                cv::putText(depthDisplay, str_DistFromMouse, cv::Point(0,h-30), cv::FONT_HERSHEY_COMPLEX , 0.5, CV_RGB(0, 0, 0), 4); //text outline
-                cv::putText(depthDisplay, str_DistFromMouse, cv::Point(0,h-30), cv::FONT_HERSHEY_COMPLEX , 0.5, CV_RGB(255, 255, 255), 1); // onscreen text with depth info
+                
+                //cout << "We are about to try and write the pointcloud" << endl;
+                //cv::FileStorage file("pointCloud.csv", cv::FileStorage::WRITE);
+                //file << "pointCloud" << pointCloud;
+                //file.release();
+                //cv::imwrite("pointCloud.pcd", pointCloud);
+                //cout << "point cloud written" << endl;
 
-                cv::imshow(depthOut, depthDisplay);
+                cv::imshow("leftEye", leftU);
+                cv::waitKey(1);
+                cv::imshow(depthOut, rightU);
                 cv::waitKey(1);
             }
         }

@@ -52,91 +52,6 @@ static constexpr std::array<uint32_t, sizeof...(I)> buildY8toRGBAMap(std::index_
 // Map for doing optimized color conversion from Y8 to RGBA
 constexpr std::array<uint32_t, 256> c_convertY8ToRGBAMap = buildY8toRGBAMap(std::make_index_sequence<256>{});
 
-void writeBMP(const std::string& filename, int32_t width, int32_t height, int32_t components, const uint8_t* data)
-{
-    assert(components == 4);
-
-    std::ofstream outFile(filename, std::ofstream::binary);
-
-    if (!outFile.good()) {
-        LOG_ERROR("Opening file for writing failed: %s", filename.c_str());
-        return;
-    }
-
-    const uint32_t imageDataSize = components * width * height;
-
-    // Write BMP headers
-    BITMAPFILEHEADER bmFileHdr;
-    bmFileHdr.bfType = *(reinterpret_cast<const WORD*>("BM"));
-    bmFileHdr.bfSize = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER) + imageDataSize;
-    bmFileHdr.bfOffBits = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
-    outFile.write(reinterpret_cast<const char*>(&bmFileHdr), sizeof(bmFileHdr));
-    if (!outFile.good()) {
-        LOG_ERROR("Writing to bitmap file failed: %s", filename.c_str());
-        return;
-    }
-
-    // Write bitmap header for RGB data
-    BITMAPINFOHEADER bmInfoHdr;
-    ZeroMemory(&bmInfoHdr, sizeof(bmInfoHdr));
-    bmInfoHdr.biSize = sizeof(bmInfoHdr);
-    bmInfoHdr.biWidth = width;
-    bmInfoHdr.biHeight = -height;  // Negative height to avoid flipping image vertically
-    bmInfoHdr.biPlanes = 1;
-    bmInfoHdr.biBitCount = 32;
-    bmInfoHdr.biCompression = BI_RGB;
-    bmInfoHdr.biSizeImage = 0;
-    bmInfoHdr.biXPelsPerMeter = bmInfoHdr.biYPelsPerMeter = 2835;
-    bmInfoHdr.biClrImportant = bmInfoHdr.biClrUsed = 0;
-    outFile.write(reinterpret_cast<const char*>(&bmInfoHdr), sizeof(bmInfoHdr));
-    if (!outFile.good()) {
-        LOG_ERROR("Writing to bitmap file failed: %s", filename.c_str());
-        return;
-    }
-
-    // Write data row by row
-    std::vector<uint8_t> row(components * width);
-    for (int32_t y = 0; y < height; ++y) {
-        const uint8_t* src = data + y * width * components;
-        uint8_t* dst = row.data();
-        for (int32_t x = 0; x < width; ++x) {
-            // Swap RGBA to BGRA used in bitmaps
-            dst[0] = src[2];
-            dst[1] = src[1];
-            dst[2] = src[0];
-            dst[3] = src[3];
-            dst += 4;
-            src += 4;
-        }
-
-        outFile.write(reinterpret_cast<const char*>(row.data()), row.size());
-        if (!outFile.good()) {
-            LOG_ERROR("Writing to bitmap file failed: %s", filename.c_str());
-            return;
-        }
-    }
-
-    outFile.close();
-    LOG_INFO("File saved succesfully: %s", filename.c_str());
-}
-
-// Save varjo buffer data as BMP image file
-void saveBMP(const std::string& filename, const varjo_BufferMetadata& buffer, const void* bufferData)
-{
-    LOG_INFO("Saving buffer to file: %s", filename.c_str());
-
-    constexpr int32_t components = 4;
-    std::vector<uint8_t> output(buffer.width * buffer.height * components);
-
-    DataStreamer::convertToR8G8B8A(buffer, bufferData, output.data());
-
-    LOG_INFO("An image has been outputted to computer and saved");
-
-
-
-    writeBMP(filename.c_str(), buffer.width, buffer.height, components, output.data());
-}
- //eventually I should write a function here that's called whenever a bmp is saved that does the conversion stuff
 }  // namespace
 
 DataStreamer::DataStreamer(varjo_Session* session, const std::function<void(const Frame&)>& onFrameCallback)
@@ -386,13 +301,6 @@ void DataStreamer::storeBuffer(const Frame::Metadata& frameMetadata, varjo_Buffe
         assert(frameMetadata.bufferMetadata.format == varjo_TextureFormat_RGBA16_FLOAT ||  //
                frameMetadata.bufferMetadata.format == varjo_TextureFormat_NV12 ||          //
                frameMetadata.bufferMetadata.format == varjo_TextureFormat_Y8_UNORM);
-
-        if (takeSnapshot && cpuData != nullptr) {
-            // Save buffer data to file.
-            std::string fileName = baseName + "_sid" + std::to_string(frameMetadata.streamFrame.id) + "_frm" +
-                                   std::to_string(frameMetadata.streamFrame.frameNumber) + "_bid" + std::to_string(bufferId) + ".bmp";
-            saveBMP(fileName, frameMetadata.bufferMetadata, cpuData);
-        }
 
         validFrameData = true;
     } else if (frameMetadata.bufferMetadata.type == varjo_BufferType_GPU) {
