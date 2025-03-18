@@ -49,7 +49,7 @@ class DepthManager: public DataStreamer{
         cv::Ptr<cv::StereoSGBM> stereo;
 
         Mat floatDisp; // For image output. Completely useless after debugging over. TODO: Delete
-        cv::Mat depthMap;
+        cv::Mat depthMap, depthColored;
         cv::Mat map1L, map2L, map1R, map2R; // for cv::remap func
 
         // pull hard-coded callibration data from yaml files

@@ -10,8 +10,7 @@ T: !!opencv-matrix
    rows: 3
    cols: 1
    dt: d
-   data: [ -0.062976, 0.000323,
-       -0.000423 ]
+   data: [ -0.062976, 0.000323, -0.000423 ]
 Q: !!opencv-matrix
    rows: 4
    cols: 4

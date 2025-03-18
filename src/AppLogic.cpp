@@ -14,10 +14,6 @@ cv::Mat depthMap; // Global depth map used for debugging display data. Recommend
 
 string str_DistFromMouse = "Collecting information from mouse..."; // stores distance from mouse to objects in
 
-bool trackbarsCreated = false;
-
-//---------------------------------------------------------------------------
-
 AppLogic::~AppLogic()
 {
     // Free data stremer resources
@@ -83,15 +79,12 @@ bool AppLogic::init()
     return true;
 }
 
+// Update frame metadata
 void AppLogic::onFrameReceived(const DataStreamer::Frame& frame)
 {
     const auto& streamFrame = frame.metadata.streamFrame;
-
-    std::lock_guard<std::mutex> streamLock(m_frameDataMutex); // TODO: Doesn't need to be a switch since I deleted all options. Also is a stream
-    if (frame.metadata.channelIndex == varjo_ChannelIndex_First) {
-                m_frameData.metadata = streamFrame.metadata.distortedColor;
-            }
-            m_frameData.colorFrames[static_cast<size_t>(frame.metadata.channelIndex)] = frame;
+    m_frameData.metadata = streamFrame.metadata.distortedColor;
+    m_frameData.colorFrames[static_cast<size_t>(frame.metadata.channelIndex)] = frame;
 }
 
 
@@ -99,8 +92,8 @@ void AppLogic::onFrameReceived(const DataStreamer::Frame& frame)
 // TODO: Current output is seemingly random or at least very inconsistent. Fix disparity map
 void onMouseCV(int action, int x, int y, int, void*)
 {
-    float depth = depthMap.at<float>(y, x);
-    float depth_converted = depth;
+    ushort depth = depthMap.at<ushort>(y, x);
+    ushort depth_converted = depth;
         
     if (action == cv::EVENT_LBUTTONDOWN) {
         std::cout << "Depth at (" << x << ", " << y << "): " << depth << " pixels" << std::endl;

@@ -56,13 +56,13 @@ namespace VarjoExamples{
         storedCalibData.M2.row(0) *= w;
         storedCalibData.M2.row(1) *= h;
 
-        cv::Mat kNew = getOptimalNewCameraMatrix(storedCalibData.M1, storedCalibData.D1, imgSize, 1, imgSize, &ROI);
-
         left_matcher = cv::StereoSGBM::create(storedDispData.minDisp, storedDispData.numDisparity, storedDispData.blockSize, 
             storedDispData.p1, storedDispData.p2, storedDispData.disp12MaxDiff, storedDispData.preFilterCap, 
             storedDispData.uniquenessRatio, storedDispData.speckleWindowSize, storedDispData.speckleRange, false);
 
         cv::omnidir::stereoRectify(storedCalibData.R, storedCalibData.T, rL, rR);
+
+        cv::Mat kNew = getOptimalNewCameraMatrix(storedCalibData.M1, storedCalibData.D1, imgSize, 1, imgSize, &ROI);
 
         // This outputs map1L, map2L, map1R, map2R. All necessary for remap()
         cv::omnidir::initUndistortRectifyMap(storedCalibData.M1, storedCalibData.D1, storedCalibData.XI1, rL, kNew, imgSize, CV_32FC1, map1L, map2L, cv::omnidir::RECTIFY_PERSPECTIVE);
@@ -107,13 +107,20 @@ namespace VarjoExamples{
            waitKey(1);
 
            Mat floatDisp;
-           filtered_disp.convertTo(floatDisp, CV_32F, 1.0); // normally divided by 16. This leads to poor visibility on depth map
-           // Creates and normalizes a representation of the depth display that's more readable and displayable
-           cv::Mat depthDisplay;
-           floatDisp.convertTo(depthDisplay, CV_8U, 255.0 / 16); // Normalize
-           cv::applyColorMap(depthDisplay, depthDisplay, cv::COLORMAP_JET); // Reconverts image to color
+           filtered_disp.convertTo(floatDisp, CV_32F, 1.0); // normally divided by 16
 
            reprojectImageTo3D(floatDisp, depthMap, storedCalibData.Q, false);
+
+            cv::Mat depthColored;
+            cv::convertScaleAbs(depthMap, depthColored, 255./10);
+            cv::applyColorMap(depthColored, depthColored, cv::COLORMAP_JET);
+
+            /*
+            if (!depthColored.empty()){
+                cv::imshow("coloredDepth", depthColored);
+                cv::waitKey(1);
+            }*/
+
         }
         else{
             cout << "ERROR: Maps for remapping not found. Must run getUndistortMapData() before running function: getDepthMap()" << endl;
